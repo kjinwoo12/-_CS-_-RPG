@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
@@ -15,7 +16,7 @@ class AsciiArt
 
     public static void Draw(string imagePath, int asciiWidth = 45)
     {
-
+        imagePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\" + imagePath;
         using (Image<Rgba32> image = Image.Load<Rgba32>(imagePath))
         {
             // 아스키 아트로 변환

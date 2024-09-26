@@ -11,7 +11,7 @@ public class HotelScene : IScene
 
     public void OnShow()
     {
-        AsciiArt.Draw($"{Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName}\\img\\HotelOwner.jpg");
+        AsciiArt.Draw($"img\\HotelOwner.jpg");
 
         Console.WriteLine("\n여관에서 무엇을 할까?");
         Console.Write("1. ");
