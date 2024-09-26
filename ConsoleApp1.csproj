@@ -68,6 +68,7 @@
     <Compile Include="Item\Equipable\WoodStick.cs" />
     <Compile Include="Item\IItem.cs" />
     <Compile Include="Item\Consumable\StrengthPotion.cs" />
+    <Compile Include="Scene\HotelScene.cs" />
     <Compile Include="Scene\DungeonSelectionScene.cs" />
     <Compile Include="Scene\SellingShopScene.cs" />
     <Compile Include="Scene\InventoryScene.cs" />
