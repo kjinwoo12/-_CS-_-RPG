@@ -39,7 +39,7 @@ public class SpartaTownScene : IScene
             }
             else if (keyInfo.KeyChar == '5')
             {
-                nextScene = new RelaxScene();
+                nextScene = new HotelScene();
                 break;
             }
         }
