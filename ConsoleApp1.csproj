@@ -1,92 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{135EE4F8-C096-48DF-8232-BEC7C0817F16}</ProjectGuid>
     <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework> <!-- 여기에서 .NET 6으로 변경 -->
     <RootNamespace>ConsoleApp1</RootNamespace>
     <AssemblyName>ConsoleApp1</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Character\Character.cs" />
-    <Compile Include="Character\CharacterStats.cs" />
-    <Compile Include="Character\EquipmentComponent.cs" />
-    <Compile Include="Character\Monster\Dragon.cs" />
-    <Compile Include="Character\Monster\Goblin.cs" />
-    <Compile Include="Character\Monster\Monster.cs" />
-    <Compile Include="Character\Monster\Vampire.cs" />
-    <Compile Include="Character\PlayerCharacter.cs" />
-    <Compile Include="GameManager.cs" />
-    <Compile Include="Item\Consumable\HealthPotion.cs" />
-    <Compile Include="Item\Consumable\IConsumableItem.cs" />
-    <Compile Include="Item\Equipable\Clothes.cs" />
-    <Compile Include="Item\Equipable\LongSword.cs" />
-    <Compile Include="Item\Equipable\Pistol.cs" />
-    <Compile Include="Item\Equipable\Dagger.cs" />
-    <Compile Include="Item\Equipable\DragonArmor.cs" />
-    <Compile Include="Item\Equipable\IEquipableItem.cs" />
-    <Compile Include="Item\Equipable\MagicArmor.cs" />
-    <Compile Include="Item\Equipable\NormalArmor.cs" />
-    <Compile Include="Item\Equipable\PaperArmor.cs" />
-    <Compile Include="Item\Equipable\SmartPhone.cs" />
-    <Compile Include="Item\Equipable\TrashSword.cs" />
-    <Compile Include="Item\Equipable\WoodStick.cs" />
-    <Compile Include="Item\IItem.cs" />
-    <Compile Include="Item\Consumable\StrengthPotion.cs" />
-    <Compile Include="Scene\HotelScene.cs" />
-    <Compile Include="Scene\DungeonSelectionScene.cs" />
-    <Compile Include="Scene\SellingShopScene.cs" />
-    <Compile Include="Scene\InventoryScene.cs" />
-    <Compile Include="Scene\IScene.cs" />
-    <Compile Include="PlayerState.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scene\CreateCharacterScene.cs" />
-    <Compile Include="Scene\PlayerInfoScene.cs" />
-    <Compile Include="Scene\RelaxScene.cs" />
-    <Compile Include="Scene\BuyingShopScene.cs" />
-    <Compile Include="Scene\SpartaTownScene.cs" />
-    <Compile Include="Shop\Product.cs" />
-    <Compile Include="Shop\ProductManager.cs" />
-    <Compile Include="Scene\DungeonScene.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.5" />
+  </ItemGroup>
 </Project>
