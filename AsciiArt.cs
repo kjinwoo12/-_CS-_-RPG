@@ -8,7 +8,6 @@ using SixLabors.ImageSharp.Processing;
 class AsciiArt
 {
     // 밝기 값에 따라 아스키 문자를 매핑하는 배열
-    private static readonly char[] asciiTable = { '@', '#', 'S', '%', '?', '*', '+', ';', ':', ',', '.' };
 
     private AsciiArt()
     {
@@ -37,22 +36,20 @@ class AsciiArt
 
         StringBuilder asciiArt = new StringBuilder();
 
-        for (int y = 1; y < image.Height; y++)
+        for (int y = 0; y < image.Height; y++)
         {
+            Console.SetCursorPosition(cursorX, cursorY + y);
             for (int x = 0; x < image.Width; x++)
             {
                 Rgba32 pixelColor = image[x, y];
 
                 // 각 픽셀의 밝기 계산
                 int brightness = (int)((pixelColor.R + pixelColor.G + pixelColor.B) / 3.0);
-                int asciiIndex = brightness * (asciiTable.Length - 1) / 255;
 
                 // 아스키 문자와 색상 정보 추가
-                Console.Write($"\x1b[38;2;{pixelColor.R};{pixelColor.G};{pixelColor.B}m\x1b[48;2;{pixelColor.R};{pixelColor.G};{pixelColor.B}m{asciiTable[asciiIndex]}");
+                Console.Write($"\x1b[38;2;{pixelColor.R};{pixelColor.G};{pixelColor.B}m\x1b[48;2;{pixelColor.R};{pixelColor.G};{pixelColor.B}m@");
             }
-            Console.SetCursorPosition(cursorX, cursorY + y - 1);
         }
-
         return asciiArt.ToString();
     }
 }

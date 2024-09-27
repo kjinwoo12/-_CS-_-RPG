@@ -6,7 +6,7 @@ public class RelaxScene : IScene
     public void OnShow()
     {
         AsciiArt.Draw($"img\\HotelOwner.jpg", 90);
-
+        Console.WriteLine();
         if (GameManager.instance.playerState.gold < 500)
         {
             Console.WriteLine("여관 주인 : 여서오세요~");
