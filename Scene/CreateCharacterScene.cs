@@ -4,22 +4,27 @@ public class CreateCharacterScene : IScene
 {
     public void OnShow()
     {
-        Console.WriteLine("        _________  ___  _________  ________  ________   ___  ________ ");
-        Console.WriteLine("       |\\___   ___\\\\  \\|\\___   ___\\\\   __  \\|\\   ___  \\|\\  \\|\\   ____\\ ");
-        Console.WriteLine("       \\|___ \\  \\_\\ \\  \\|___ \\  \\_\\ \\  \\|\\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\___|");
-        Console.WriteLine("            \\ \\  \\ \\ \\  \\   \\ \\  \\ \\ \\  \\ \\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\____ ");
-        Console.WriteLine("             \\ \\__\\ \\ \\__\\   \\ \\__\\ \\ \\__\\ \\__\\ \\__\\\\ \\__\\ \\__\\ \\_______\\       ⢢⣿⢻ ");
-        Console.WriteLine("              \\|__|  \\|__|    \\|__|  \\|__|\\|__|\\|__| \\|__|\\|__|\\|_______|       ⢼⡯⡨⠀⠀⣺⡿⠃");
-        Console.WriteLine("                 ⠀                                                          ⢈⣀⣌⡀⣼⡓⠆⢀⡀⣿⢂⠁ ⢨⡟⡃ ⢰⡦");
-        Console.WriteLine("                                                            ⢸⢂⡮⣴⢤⣖⣀⣆⢠⡀⡄⡁⣀⢷⠳⡷⡭⡫⠮⡱⡮⣟⣛⠻⠣⣭⡢⢤⡘⡣⠀⡿⡁⡽⠃⠀⠨⠀⠀⠀⠀⠄⠀⠀");
-        Console.WriteLine("                                                            ⣸⣿⣿⣿⣿⣷⣿⣾⣷⣯⣮⣽⣬⣩⣃⣋⡚⢙⠍⠳⠽⠍⠉⠛⠃⠢⠌⢩⢑⠊⠝⠤⢂⡝⡠⢄⡐⠀⠀⠀⡀⠀⠀⠁");
-        Console.WriteLine("                                                            ⢛⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣦⣦⣴⣤⣀⣄⣀⡈⡈⠈⠐⠐⠈⠄⢈⠈⠡⠀⠀⠀⠐⠀");
-        Console.WriteLine("                                                            ⢨⣿⣿⢿⣯⣿⣽⣷⣿⣟⣿⣻⣿⣻⣿⡿⣿⣿⣻⡿⣿⢿⣿⣻⣯⣿⣻⢿⣝⣿⣻⣟⢿⣛⣟⢞⣗⠝⠁⡀⡀⢂⠐⠀");
-        Console.WriteLine("                                                            ⢑⣿⣻⣟⣿⣻⣻⢯⣟⣿⡻⣟⢿⡫⢟⡛⢿⠾⡻⡟⢿⢻⢏⡿⡳⡫⡥⢕⢆⡥⣨⡉⣁⢁⠅⠣⠐⢌⠒⡀⢊⢄⢑⠑");
-        Console.WriteLine("                                                              ⢵⡮⣾⢵⢣⡏⣵⡵⣬⣬⣡⡣⣝⣇⢟⣝⢛⢞⢜⣑⢱⢢⠪⢎⠾⡘⣧⢲⡬⣮⡺⣜⢭⢫⡛⡺⢌⢏⡺⡱⡣⣮⣅");
+        Console.WriteLine(" ________  ___  ___  ________  _______   ________           _______    ________ ");
+        Console.WriteLine("|\\   ____\\|\\  \\|\\  \\|\\   __  \\|\\   ___\\  |\\   __  \\        |\\   ___\\  |\\_____  \\");
+        Console.WriteLine("\\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\|\\  \\ \\  \\__/  \\ \\  \\|\\  \\       \\ \\  \\__/   \\|___/  /|");
+        Console.WriteLine(" \\ \\_____  \\ \\  \\\\\\  \\ \\   ____\\ \\   __\\  \\ \\   _  _\\       \\ \\   __\\      /  / / ");
+        Console.WriteLine("  \\|____|\\  \\ \\  \\\\\\  \\ \\  \\___|\\ \\  \\_/__ \\ \\  \\\\  \\|       \\ \\  \\_/__   /  /_/__ ");
+        Console.WriteLine("    ____\\_\\  \\ \\_______\\ \\__\\    \\ \\______\\ \\ \\__\\\\ _\\        \\ \\______\\  \\________\\ ");
+        Console.WriteLine("   |\\_________\\|_______|\\|__|     \\|_______| \\|__|\\|__|        \\|_______| \\|_______|");
+        Console.WriteLine("   \\|_________|");
+        Console.WriteLine();
+        Console.WriteLine("  ________  ________  ________");
+        Console.WriteLine(" |\\   __  \\|\\   __  \\|\\   ____\\");
+        Console.WriteLine(" \\ \\  \\|\\  \\ \\  \\|\\  \\ \\  \\___| ");
+        Console.WriteLine("  \\ \\   _  _\\ \\   ____\\ \\  \\  ___ ");
+        Console.WriteLine("   \\ \\  \\\\  \\\\ \\  \\___|\\ \\  \\|\\  \\");
+        Console.WriteLine("    \\ \\__\\\\ _\\\\ \\__\\    \\ \\_______\\");
+        Console.WriteLine("     \\|__|\\|__|\\|__|     \\|_______|");
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
 
-        Console.WriteLine();
-        Console.WriteLine();
 
         Console.WriteLine("          원하시는 캐릭터의 이름을 설정해주세요.");
         Console.Write("          >> ");
@@ -28,10 +33,25 @@ public class CreateCharacterScene : IScene
         Console.Clear();
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine($"당신의 캐릭터 [{name}]의 직업을 설정해주세요.");
+        Console.WriteLine($"                                   당신의 캐릭터 [{name}]의 직업을 설정해주세요.");
         Console.WriteLine();
-        Console.WriteLine("1. 워리어");
-        Console.WriteLine("2. 시프");
+        Console.WriteLine();
+        Console.WriteLine("                                                    1. 워리어");
+        Console.WriteLine("                                                    2. 시프");
+        Console.WriteLine("                                                    3. 몽크") ;
+        Console.WriteLine("                                                    4. 마법사");
+        Console.WriteLine("                                                    5. 아처");
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.WriteLine("");
+
+
+
+
         while (true)
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
