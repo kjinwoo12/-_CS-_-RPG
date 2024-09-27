@@ -7,20 +7,6 @@ public class SpartaTownScene : IScene
     public void OnShow()
     {
 
-
-        Console.Clear();
-        AsciiArt.Draw($"img\\Rtan.png");
-        SetCursorPos(123, 456);
-        //바꿔바꿔
-        Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-        Console.WriteLine("1. 상태 보기");
-        Console.WriteLine("2. 인벤토리");
-        Console.WriteLine("3. 상점");
-        Console.WriteLine("4. 던전");
-        Console.WriteLine("5. 여관");
-        Console.WriteLine("\n원하시는 행동에 맞는 번호를 눌러주세요.");
-
-        
         Console.Clear();
 
         Console.WriteLine("         ");
