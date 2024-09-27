@@ -19,7 +19,10 @@ public class Character
     public int health { get; set; }
 
     public bool isDead => health <= 0;
-    public int attack => new Random().Next(stats.minAttack, stats.maxAttack);
+    public int attack => 
+        new Random().NextDouble() < stats.criticalRate ? 
+        new Random().Next(stats.minAttack * 2, stats.maxAttack * 2 + 1) :
+        new Random().Next(stats.minAttack, stats.maxAttack + 1);
 
     public Character(string name, CharacterStats originalStats)
     {

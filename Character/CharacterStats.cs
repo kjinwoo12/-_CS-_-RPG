@@ -1,7 +1,7 @@
 ﻿public struct CharacterStats
 {
     public CharacterStats
-        (int maxHealth = 100, int minAttack = 10, int maxAttack = 20, int minArmor = 5, int maxArmor = 10, int maxAgility = 10, float criticalRate = 0.2f)
+        (int maxHealth = 100, int minAttack = 10, int maxAttack = 20, int minArmor = 5, int maxArmor = 10, int maxAgility = 0, float criticalRate = 0.0f)
     {
         this.maxHealth = maxHealth;
         this.minAttack = minAttack;
@@ -41,8 +41,8 @@
             stat1.maxAttack - stat2.maxAttack,
             stat1.minArmor - stat2.minArmor,
             stat1.maxArmor - stat2.maxArmor,
-            stat1.maxAgility + stat2.maxAgility,
-            stat1.criticalRate + stat2.criticalRate);
+            stat1.maxAgility - stat2.maxAgility,
+            stat1.criticalRate - stat2.criticalRate);
         return result;
     }
 }
