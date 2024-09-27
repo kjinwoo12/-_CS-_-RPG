@@ -20,23 +20,20 @@ class AsciiArt
         using (Image<Rgba32> image = Image.Load<Rgba32>(imagePath))
         {
             // 아스키 아트로 변환
-            string asciiArt = ConvertToAscii(image, asciiWidth);
-
-            // 아스키 아트 출력
-            Console.WriteLine(asciiArt);
+            ShowAscii(image, asciiWidth);
         }
         Console.ResetColor();
     }
 
     // 이미지를 아스키 아트로 변환하는 함수
-    private static string ConvertToAscii(Image<Rgba32> image, int asciiWidth)
+    private static string ShowAscii(Image<Rgba32> image, int asciiWidth)
     {
         int asciiHeight = (int)(image.Height / (double)image.Width * asciiWidth); // 이미지 비율 유지
         image.Mutate(x => x.Resize(asciiWidth, asciiHeight)); // 이미지 크기 조정
 
         StringBuilder asciiArt = new StringBuilder();
 
-        for (int y = 0; y < image.Height; y++)
+        for (int y = 1; y < image.Height; y++)
         {
             for (int x = 0; x < image.Width; x++)
             {
@@ -47,9 +44,9 @@ class AsciiArt
                 int asciiIndex = brightness * (asciiTable.Length - 1) / 255;
 
                 // 아스키 문자와 색상 정보 추가
-                asciiArt.Append($"\x1b[38;2;{pixelColor.R};{pixelColor.G};{pixelColor.B}m\x1b[48;2;{pixelColor.R};{pixelColor.G};{pixelColor.B}m{asciiTable[asciiIndex]}");
+                Console.Write($"\x1b[38;2;{pixelColor.R};{pixelColor.G};{pixelColor.B}m\x1b[48;2;{pixelColor.R};{pixelColor.G};{pixelColor.B}m{asciiTable[asciiIndex]}");
             }
-            asciiArt.Append("\n");
+            Console.WriteLine();
         }
 
         return asciiArt.ToString();
