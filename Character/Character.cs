@@ -63,20 +63,3 @@ public class Character
         additionalStats -= equipableItem.additionalStats;
     }
 }
-public class Warrior : PlayerCharacter
-{
-    public Warrior(string name)
-        : base(name, new CharacterStats(200, 10, 15, 2, 5))
-    {
-        jobName = "워리어";
-    }
-}
-
-public class Thief : PlayerCharacter
-{
-    public Thief(string name)
-        : base(name, new CharacterStats(100, 6, 30, 0, 3))
-    {
-        jobName = "시프";
-    }
-}
