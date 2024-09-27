@@ -6,7 +6,12 @@ public class SpartaTownScene : IScene
     IScene nextScene = null;
     public void OnShow()
     {
+
+
         Console.Clear();
+        AsciiArt.Draw($"img\\Rtan.png");
+        SetCursorPos(123, 456);
+        //바꿔바꿔
         Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
         Console.WriteLine("1. 상태 보기");
         Console.WriteLine("2. 인벤토리");
@@ -14,6 +19,61 @@ public class SpartaTownScene : IScene
         Console.WriteLine("4. 던전");
         Console.WriteLine("5. 여관");
         Console.WriteLine("\n원하시는 행동에 맞는 번호를 눌러주세요.");
+
+        
+        Console.Clear();
+
+        Console.WriteLine("         ");
+        Console.WriteLine("         ");
+        Console.WriteLine("         ");
+
+        Console.WriteLine("      ┌──────────────────────────────────────────────┐    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │            Welcome to Sparta Town            │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │──────────────────────────────────────────────│    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣉⣹⣿⣿⣿⣏⣉⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.Write("      │                  ");
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.Write("1. 상태 보기");
+        Console.ResetColor();
+        Console.WriteLine("                │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⠀⢀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠖⠁⠶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.Write("      │                  ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write("2. 인벤토리");
+        Console.ResetColor();
+        Console.WriteLine("                 │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡇⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⢸⣿⡟⠛⠛⣿⣿⣿⣿⣿⣿⣿⣿⡟⠛⢻⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.Write("      │                  ");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write("3. 상점");
+        Console.ResetColor();
+        Console.WriteLine("                     │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢻⣧⣄⠀⣤⣾⣿⣿⡇⠀⠀⣤⡀⢹⣿⣿⡿⠀⣤⡀⠀⢸⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢹⣿⠀⣿⣿⣿⣿⣿⣆⣀⠿⠃⠸⠿⠿⠷⠀⠿⢇⣰⣾⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.Write("      │                  ");
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write("4. 던전");
+        Console.ResetColor();
+        Console.WriteLine("                     │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⣿⣿⣿⣿⣿⣿⣿⣤⠀⠀⠀⠀⠀⠀⣤⣾⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣼⣿⣤⣿⠛⢻⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣤⣤⣤⣤⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.Write("      │                  ");
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write("5. 여관");
+        Console.ResetColor();
+        Console.WriteLine("                     │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡏⠀⠀⠀⠰⠿⠿⢿⣿⣿⡿⣇⣀⣀⣀⣀⣀⣿⣿⡿⠏⠀⠀⠉⠉⠀⠀⠰⠖⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠉⠉⠿⠿⠿⠿⠿⠿⠿⣿⡏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⣶⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      └──────────────────────────────────────────────┘    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      ┌──────────────────────────────────────────────┐    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢻⣿⠿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⣿⣿⣿⣿⣿⢀⣀⣀⣀⣀⣀⣀⣀⢀⣀⣿⣇⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠿⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡟⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡆⠀⠀⠀⠀⠀⠀⢰⡦⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │    원하시는 행동에 맞는 번호를 눌러주세요.   │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⣿⣿⣿⣿⡟⠉⠙⠛⠛⢿⣿⣿⣿⠛⠛⠛⠛⢻⣿⣿⣿⣿⣿⡟⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⣿⣿⣿⡏⠁⠀⠀⠀⠀⢸⣿⣿⣿⠀⠀⠀⠀⠀⠉⣿⣿⣿⣿⣇⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      │                                              │    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠶⠿⠿⠿⠷⠶⠶⠶⠶⠶⠾⠿⠿⠿⠶⠶⠶⠶⠶⠶⠿⠿⠿⠿⠿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("      └──────────────────────────────────────────────┘    ");
+        Console.Write("      입력 >> ");
+
+
         while (true)
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
