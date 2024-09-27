@@ -1,12 +1,3 @@
----
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: 'pr_type: title'
-labels: ''
-assignees: ''
-
----
-
 ### PR 타입(하나 이상의 PR 타입을 선택해주세요. 선택은 `[x]` 표시)
 - [ ] feat : Add feature
 - [ ] fix : Bugfix
