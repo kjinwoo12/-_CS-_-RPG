@@ -10,7 +10,6 @@ public class SpartaTownScene : IScene
 
         Console.Clear();
         AsciiArt.Draw($"img\\Rtan.png");
-        SetCursorPos(123, 456);
         //바꿔바꿔
         Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
         Console.WriteLine("1. 상태 보기");
