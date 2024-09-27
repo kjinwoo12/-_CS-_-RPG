@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 public class Archer : PlayerCharacter
 {
     public Archer(string name)
-        : base(name, new CharacterStats(130, 7, 14, 3, 5, 13, 0.2f))
+        : base(name, new CharacterStats(130, 7, 14, 3, 5, 13, 0.15f))
     {
         jobName = "아쳐";
     }

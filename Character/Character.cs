@@ -73,7 +73,9 @@ public class Character
         if(new Random().NextDouble() < this.stats.criticalRate)
         {
             attackResult.attackType = AttackType.Critical;
-            attackResult.damage = new Random().Next(this.stats.minAttack * 2, this.stats.maxAttack * 2 + 1);
+            int minCriticalAttack = (int)Math.Ceiling(this.stats.minAttack * 1.6f);
+            int maxCriticalAttack = (int)Math.Ceiling(this.stats.maxAttack * 1.6f);
+            float damageTemp = new Random().Next(minCriticalAttack, maxCriticalAttack + 1);
         }
         else
         {
