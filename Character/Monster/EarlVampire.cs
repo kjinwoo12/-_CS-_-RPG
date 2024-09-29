@@ -3,7 +3,7 @@
 public class EarlVampire : Monster
 {
     public EarlVampire()
-        : base("뱀파이어 백작", new CharacterStats(150, 15, 25, 10, 15))
+        : base("뱀파이어 백작", new CharacterStats(150, 15, 25, 10, 15, 7, 10, 12))
     {
         rewardGold = 700;
         rewardExp = 15;
