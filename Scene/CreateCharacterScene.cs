@@ -21,19 +21,26 @@ public class CreateCharacterScene : IScene
         Console.WriteLine("    \\ \\__\\\\ _\\\\ \\__\\    \\ \\_______\\");
         Console.WriteLine("     \\|__|\\|__|\\|__|     \\|_______|");
         Console.WriteLine();
+        Console.WriteLine(); 
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine();
+        Console.WriteLine(" 원하시는 캐릭터의 이름을 설정해주세요.");
+        Console.Write(" >> ");
+        int x = Console.CursorLeft;
+        int y = Console.CursorTop;
+        AsciiArt.Draw("img\\Bob.png", 43, 9, 40);
+        Console.SetCursorPosition(x, y);
 
 
-        Console.WriteLine("          원하시는 캐릭터의 이름을 설정해주세요.");
-        Console.Write("          >> ");
+
+
+        
         string name = Console.ReadLine();
 
         Console.Clear();
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine($"                                   당신의 캐릭터 [{name}]의 직업을 설정해주세요.");
+        Console.WriteLine($"                                     당신의 캐릭터 [{name}]의 직업을 설정해주세요.");
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine("                                                    1. 워리어");
@@ -48,6 +55,7 @@ public class CreateCharacterScene : IScene
         Console.WriteLine("");
         Console.WriteLine("");
         Console.WriteLine("");
+        AsciiArt.Draw("img\\CharacterJobSelection.png", 28, 13, 60);
 
 
 
