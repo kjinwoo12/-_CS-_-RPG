@@ -131,6 +131,10 @@ public class InventoryScene : IScene
             }
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
+                if (playerState.inventory.Count <= 0)
+                {
+                    continue;
+                }
                 IItem item = playerState.inventory[selectedItemIndex];
                 if (item is IEquipableItem)
                 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System;
+using System.Xml.Linq;
 
 public class DungeonScene : IScene
 {
@@ -51,9 +52,13 @@ public class DungeonScene : IScene
     void DoTurn(Character turnOwner, Character enemy)
     {
         Console.WriteLine($"{turnOwner.name}의 턴!");
-        enemy.takeDamage(turnOwner.attack);
+        TakeDamageResult takeDamageResult = enemy.takeDamage(turnOwner.DoAttack(enemy));
+        enemy.health -= takeDamageResult.actualDamage;
+        Console.WriteLine($"{enemy.name}이(가) {takeDamageResult.defenseAmount}의 데미지를 막아냈습니다");
+        Console.WriteLine($"{enemy.name}이(가) {takeDamageResult.actualDamage}의 데미지를 받았습니다");
+        
         Console.WriteLine();
-        Thread.Sleep(1000);
+        Thread.Sleep(3000);
     }
 
     private void OnCharacterDeath(Character character)
