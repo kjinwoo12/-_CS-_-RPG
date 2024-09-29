@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class DungeonSelectionScene : IScene
 {
@@ -23,17 +24,29 @@ public class DungeonSelectionScene : IScene
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             if(keyInfo.KeyChar == '1')
             {
-                nextScene = new DungeonScene(new Goblin());
+                List<Monster> monsters = new List<Monster>();
+                monsters.Add(new Goblin("고블린1"));
+                monsters.Add(new Goblin("고블린2"));
+                monsters.Add(new Goblin("고블린3"));
+                nextScene = new DungeonScene(monsters);
                 break;
             }
             else if (keyInfo.KeyChar == '2')
             {
-                nextScene = new DungeonScene(new Vampire());
+                List<Monster> monsters = new List<Monster>();
+                monsters.Add(new Vampire());
+                monsters.Add(new Vampire());
+                monsters.Add(new Vampire());
+                nextScene = new DungeonScene(monsters);
                 break;
             }
             else if (keyInfo.KeyChar == '3')
             {
-                nextScene = new DungeonScene(new Dragon());
+                List<Monster> monsters = new List<Monster>();
+                monsters.Add(new Dragon());
+                monsters.Add(new Dragon());
+                monsters.Add(new Dragon());
+                nextScene = new DungeonScene(monsters);
                 break;
             }
             else if (keyInfo.KeyChar == '4')

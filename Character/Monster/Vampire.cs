@@ -3,7 +3,12 @@
 public class Vampire : Monster
 {
     public Vampire()
-        : base("뱀파이어", new CharacterStats(100, 10, 20, 5, 10))
+        : this("뱀파이어")
+    { 
+    }
+
+    public Vampire(string name)
+        : base(name, new CharacterStats(100, 10, 20, 5, 10))
     {
         rewardGold = 500;
         rewardExp = 10;

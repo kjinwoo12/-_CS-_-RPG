@@ -1,41 +1,6 @@
 ﻿using System;
 using System.Threading;
 
-public enum AttackType
-{
-    Normal = 0,
-    Weak,
-    Critical
-}
-
-public struct AttackResult
-{
-    public Character attacker = null;
-    public Character target = null;
-    public AttackType attackType;
-    public int damage;
-
-    public AttackResult()
-    {
-        attackType = AttackType.Normal;
-        damage = 0;
-    }
-}
-
-public struct TakeDamageResult
-{
-    public AttackResult attackResult = new AttackResult();
-    public int actualDamage;
-    public int defenseAmount;
-
-    public TakeDamageResult()
-    {
-        actualDamage = 0;
-        defenseAmount = 0;
-    }
-}
-
-
 public class Character
 {
     public int level { get; protected set; } = 1;
@@ -64,40 +29,48 @@ public class Character
         equipmentComponent.OnUnequipDelegate += OnUnequip;
     }
 
-    public AttackResult DoAttack(Character target)
+    public AttackOrderInfo CreateAttackOrder(Character target)
     {
-        AttackResult attackResult = new AttackResult();
-        attackResult.attacker = this;
-        attackResult.target = target;
+        AttackOrderInfo attackOrderInfo = new AttackOrderInfo();
+        attackOrderInfo.target = target;
 
         if(new Random().NextDouble() < this.stats.criticalRate)
         {
-            attackResult.attackType = AttackType.Critical;
+            attackOrderInfo.attackType = AttackType.CRITICAL;
             int minCriticalAttack = (int)Math.Ceiling(this.stats.minAttack * 1.6f);
             int maxCriticalAttack = (int)Math.Ceiling(this.stats.maxAttack * 1.6f);
             float damageTemp = new Random().Next(minCriticalAttack, maxCriticalAttack + 1);
         }
         else
         {
-            attackResult.attackType = AttackType.Normal;
-            attackResult.damage = new Random().Next(this.stats.minAttack, this.stats.maxAttack + 1);
+            attackOrderInfo.attackType = AttackType.NORMAL;
+            attackOrderInfo.damage = new Random().Next(this.stats.minAttack, this.stats.maxAttack + 1);
         }
 
-        return attackResult;
+        return attackOrderInfo;
     }
 
-    public TakeDamageResult takeDamage(AttackResult attackResult)
+    public DefenseOrderInfo CreateDefenseOrder(AttackOrderInfo attackOrderInfo)
     {
-        TakeDamageResult result = new TakeDamageResult();
-        result.attackResult = attackResult;
+        DefenseOrderInfo result = new DefenseOrderInfo();
+        result.attackResult = attackOrderInfo;
         result.defenseAmount = (new Random().Next(this.stats.minArmor, this.stats.maxArmor + 1));
-        result.actualDamage = attackResult.damage - result.defenseAmount;
+        result.actualDamage = attackOrderInfo.damage - result.defenseAmount;
         if (result.actualDamage <= 0)
         {
             result.actualDamage = 1;
         }
 
         return result;
+    }
+
+    public HealOrderInfo CreateHealOrder(Character target)
+    {
+        HealOrderInfo healOrderInfo = new HealOrderInfo();
+        healOrderInfo.target = target;
+        //#Todo : Make another stat for healing
+        healOrderInfo.healAmount = (new Random().Next(this.stats.minArmor, this.stats.maxArmor));
+        return healOrderInfo;
     }
 
     void OnEquip(IEquipableItem equipableItem)

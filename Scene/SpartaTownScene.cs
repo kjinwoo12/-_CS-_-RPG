@@ -2,7 +2,6 @@
 using System;
 public class SpartaTownScene : IScene
 {
-    int actNum = 0;
     IScene nextScene = null;
     public void OnShow()
     {

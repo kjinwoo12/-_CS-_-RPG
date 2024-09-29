@@ -3,7 +3,12 @@
 public class Dragon : Monster
 {
     public Dragon()
-        : base("드래곤", new CharacterStats(200, 20, 40, 15, 25))
+        : this("드래곤")
+    {
+    }
+
+    public Dragon(string name)
+        : base(name, new CharacterStats(200, 20, 40, 15, 25))
     {
         rewardGold = 5000;
         rewardExp = 15;
