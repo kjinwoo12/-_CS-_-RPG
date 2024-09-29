@@ -40,7 +40,8 @@ public class Character
 {
     public int level { get; protected set; } = 1;
     public string name { get; }
-    public CharacterStats originalStats { get; }
+    public CharacterStats originalStats { get; protected set; }
+    public CharacterStats levelUpStats { get; protected set; } = new CharacterStats(20, 1, 1, 2, 2, 1, 0.0f);
     public CharacterStats additionalStats { get; set; }
     public CharacterStats stats
     {
