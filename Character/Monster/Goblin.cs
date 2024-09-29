@@ -8,7 +8,7 @@ public class Goblin : Monster
     }
 
     public Goblin(string name)
-        : base(name, new CharacterStats(50, 5, 10, 0, 3))
+        : base(name, new CharacterStats(50, 5, 10, 0, 3, 0, 3, 5))
     {
         rewardGold = 50;
         rewardExp = 5;

@@ -3,7 +3,7 @@
 public class BaronVampire : Monster
 {
     public BaronVampire()
-        : base("뱀파이어 남작", new CharacterStats(120, 12, 22, 7, 12))
+        : base("뱀파이어 남작", new CharacterStats(120, 12, 22, 7, 12, 5, 10, 10))
     {
         rewardGold = 650;
         rewardExp = 12;

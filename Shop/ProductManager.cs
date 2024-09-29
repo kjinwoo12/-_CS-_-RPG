@@ -23,6 +23,8 @@ class ProductManager
         AddProduct(8000, typeof(Dagger));
         AddProduct(32000, typeof(Pistol));
         AddProduct(128000, typeof(LongSword));
+        AddProduct(62000, typeof(Mjolnir));
+        AddProduct(3000, typeof (SnowBall));
 
         //Clothes
         AddProduct(500, typeof(Clothes));
@@ -32,6 +34,7 @@ class ProductManager
         AddProduct(8000, typeof(NormalArmor));
         AddProduct(32000, typeof(MagicArmor));
         AddProduct(128000, typeof(DragonArmor));
+        AddProduct(12000, typeof(LeatherArmor));
 
         //Accessory
         AddProduct(1000000, typeof(SmartPhone));

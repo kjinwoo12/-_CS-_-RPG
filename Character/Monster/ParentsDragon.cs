@@ -3,7 +3,7 @@
 public class ParentsDragon : Monster
 {
     public ParentsDragon()
-        : base("엄빠 드래곤", new CharacterStats(1000, 100, 120, 50, 70))
+        : base("엄빠 드래곤", new CharacterStats(1000, 100, 120, 50, 70, 20, 35, 30))
     {
         rewardGold = 10000;
         rewardExp = 100;
