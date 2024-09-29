@@ -90,8 +90,17 @@ public class DungeonScene : IScene
         Console.WriteLine($"┌─────────────────────────────────── 내 정보 ─────────────────────────────────┐");
         foreach (PlayerCharacter playerCharacter in playerCharacters)
         {
-            //#Todo : print character's job image
-            Console.WriteLine($"[ {playerCharacter.name} ] : 체력({playerCharacter.health}/{playerCharacter.stats.maxHealth}) 공격력({playerCharacter.stats.minAttack}~{playerCharacter.stats.maxAttack}) 방어력({playerCharacter.stats.minArmor}~{playerCharacter.stats.maxArmor}) 민첩({playerCharacter.stats.minAgility}~{playerCharacter.stats.maxAgility}) 크리티컬확률({(playerCharacter.stats.criticalRate * 100).ToString("n2")}%)");
+            if(playerCharacter.isDead)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            Console.Write($"[ {playerCharacter.name} ] : ");
+            Console.ResetColor();
+            Console.WriteLine($"체력({playerCharacter.health}/{playerCharacter.stats.maxHealth}) 공격력({playerCharacter.stats.minAttack}~{playerCharacter.stats.maxAttack}) 방어력({playerCharacter.stats.minArmor}~{playerCharacter.stats.maxArmor}) 민첩({playerCharacter.stats.minAgility}~{playerCharacter.stats.maxAgility}) 크리티컬확률({(playerCharacter.stats.criticalRate * 100).ToString("n2")}%)");
         }
         Console.WriteLine($"└─────────────────────────────────────────────────────────────────────────────┘");
     }
@@ -101,8 +110,17 @@ public class DungeonScene : IScene
         Console.WriteLine($"┌───────────────────────────────── 몬스터 정보 ───────────────────────────────┐");
         foreach (Monster monster in monsters)
         {
-            //#Todo : print monster's image
-            Console.WriteLine($"[ {monster.name} ] : 체력({monster.health}/{monster.stats.maxHealth}) 공격력({monster.stats.minAttack}~{monster.stats.maxAttack}) 방어력({monster.stats.minArmor}~{monster.stats.maxArmor}) 민첩({monster.stats.minAgility}~{monster.stats.maxAgility}) 크리티컬확률({(monster.stats.criticalRate * 100).ToString("n2")}%)");
+            if (monster.isDead)
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            Console.Write($"[ {monster.name} ] : ");
+            Console.ResetColor();
+            Console.WriteLine($"체력({monster.health}/{monster.stats.maxHealth}) 공격력({monster.stats.minAttack}~{monster.stats.maxAttack}) 방어력({monster.stats.minArmor}~{monster.stats.maxArmor}) 민첩({monster.stats.minAgility}~{monster.stats.maxAgility}) 크리티컬확률({(monster.stats.criticalRate * 100).ToString("n2")}%)");
         }
         Console.WriteLine($"└─────────────────────────────────────────────────────────────────────────────┘");
     }
