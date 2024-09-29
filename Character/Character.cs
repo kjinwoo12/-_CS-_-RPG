@@ -1,6 +1,41 @@
 ﻿using System;
 using System.Threading;
 
+public enum AttackType
+{
+    Normal = 0,
+    Weak,
+    Critical
+}
+
+public struct AttackResult
+{
+    public Character attacker = null;
+    public Character target = null;
+    public AttackType attackType;
+    public int damage;
+
+    public AttackResult()
+    {
+        attackType = AttackType.Normal;
+        damage = 0;
+    }
+}
+
+public struct TakeDamageResult
+{
+    public AttackResult attackResult = new AttackResult();
+    public int actualDamage;
+    public int defenseAmount;
+
+    public TakeDamageResult()
+    {
+        actualDamage = 0;
+        defenseAmount = 0;
+    }
+}
+
+
 public class Character
 {
     public int level { get; protected set; } = 1;
@@ -19,7 +54,6 @@ public class Character
     public int health { get; set; }
 
     public bool isDead => health <= 0;
-    public int attack => new Random().Next(stats.minAttack, stats.maxAttack);
 
     public Character(string name, CharacterStats originalStats)
     {
@@ -30,27 +64,40 @@ public class Character
         equipmentComponent.OnUnequipDelegate += OnUnequip;
     }
 
-    public void takeDamage(int damage)
+    public AttackResult DoAttack(Character target)
     {
-        Random rnd = new Random();
+        AttackResult attackResult = new AttackResult();
+        attackResult.attacker = this;
+        attackResult.target = target;
 
-        damage -= rnd.Next(stats.minArmor, stats.maxArmor + 1);
-        if (damage <= 0)
+        if(new Random().NextDouble() < this.stats.criticalRate)
         {
-            damage = 1;
-        }
-
-        health -= damage;
-        Console.WriteLine($"{name}이(가) {damage}의 데미지를 받았습니다");
-        Thread.Sleep(500);
-        if (isDead)
-        {
-            Console.WriteLine($"{name}이(가) 죽었습니다.");
+            attackResult.attackType = AttackType.Critical;
+            int minCriticalAttack = (int)Math.Ceiling(this.stats.minAttack * 1.6f);
+            int maxCriticalAttack = (int)Math.Ceiling(this.stats.maxAttack * 1.6f);
+            float damageTemp = new Random().Next(minCriticalAttack, maxCriticalAttack + 1);
         }
         else
         {
-            Console.WriteLine($"{name}의 남은 체력: {health}/{stats.maxHealth}");
+            attackResult.attackType = AttackType.Normal;
+            attackResult.damage = new Random().Next(this.stats.minAttack, this.stats.maxAttack + 1);
         }
+
+        return attackResult;
+    }
+
+    public TakeDamageResult takeDamage(AttackResult attackResult)
+    {
+        TakeDamageResult result = new TakeDamageResult();
+        result.attackResult = attackResult;
+        result.defenseAmount = (new Random().Next(this.stats.minArmor, this.stats.maxArmor + 1));
+        result.actualDamage = attackResult.damage - result.defenseAmount;
+        if (result.actualDamage <= 0)
+        {
+            result.actualDamage = 1;
+        }
+
+        return result;
     }
 
     void OnEquip(IEquipableItem equipableItem)
@@ -61,22 +108,5 @@ public class Character
     void OnUnequip(IEquipableItem equipableItem)
     {
         additionalStats -= equipableItem.additionalStats;
-    }
-}
-public class Warrior : PlayerCharacter
-{
-    public Warrior(string name)
-        : base(name, new CharacterStats(200, 10, 15, 2, 5))
-    {
-        jobName = "워리어";
-    }
-}
-
-public class Thief : PlayerCharacter
-{
-    public Thief(string name)
-        : base(name, new CharacterStats(100, 6, 30, 0, 3))
-    {
-        jobName = "시프";
     }
 }
