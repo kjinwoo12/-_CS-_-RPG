@@ -23,6 +23,11 @@ public class MonsterAiComponent
         actionWeightList = new List<AiActionWeight>();
     }
 
+    public void RemoveActions()
+    {
+        actionWeightList.Clear();
+    }
+
     public void AddActionWeight(AiAction aiAction, int weight)
     {
         actionWeightList.Add(new AiActionWeight(aiAction, weight));
