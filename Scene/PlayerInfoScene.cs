@@ -1,72 +1,63 @@
-﻿using System;
+﻿using ConsoleApp1;
+using System;
+using System.Security.Cryptography;
 public class PlayerInfoScene : IScene
 {
     public void OnShow()
     {
-        int boxWidth = 25; // 전체 박스 너비
-        int contentWidth = boxWidth - 2; // 내용이 들어갈 너비 (테두리 제외)
-        int boxHeight = 5; // 박스의 높이
-
-
         PlayerCharacter playerCharacter = GameManager.instance.playerCharacter;
         PlayerState playerState = GameManager.instance.playerState;
 
-        Console.WriteLine("┌──────────────────────────┐");
-        Console.WriteLine("│                          │");
-        Console.WriteLine("│          상태 창         │");
-        Console.WriteLine("│                          │");
-        Console.WriteLine("└──────────────────────────┘");
+        // 각 텍스트의 최대 길이를 계산
+        string[] lines = new string[]
+          {
+            $"[ {playerCharacter.name} ] - {playerCharacter.jobName}",
+            $"LV. {playerCharacter.level} ({playerCharacter.currentExp} / {playerCharacter.maxExp})",
+            $"공격력: {playerCharacter.stats.minAttack} ~ {playerCharacter.stats.maxAttack}",
+            $"방어력: {playerCharacter.stats.minArmor} ~ {playerCharacter.stats.maxArmor}",
+            $"체력  : {playerCharacter.health}/{playerCharacter.stats.maxHealth}",
+            $"골드  : {playerState.gold} G"
+          };
 
-        Console.WriteLine("│ 영웅의 정보가 표시됩니다 │");
+        // 상태창 화면 확인 글
+        Console.SetCursorPosition(0, 0);
+        Console.WriteLine($"[상태 창]");
+        Console.WriteLine();
+        Console.WriteLine();
+
+        // 상자 그리기
+        BoxMaker.Draw(48, 8, 6, 3, ConsoleColor.Red);
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            ConsoleColor textColor = i switch
+            {
+                0 => ConsoleColor.Yellow,  // 이름과 직업은 노란색
+                1 => ConsoleColor.Yellow,   // 레벨은 노란색
+                2 => ConsoleColor.Red,     // 공격력은 빨간색
+                3 => ConsoleColor.Blue,    // 방어력은 파란색
+                4 => ConsoleColor.Green, // 체력은 초록색
+                5 => ConsoleColor.Gray,    // 골드는 회색
+                _ => ConsoleColor.White,   // 기본 색상
+            };
+            PrintColoredText(lines[i], 8, 4 + i, textColor);
+        }
 
 
-        Console.WriteLine("┌──────────────────────────┐");
-        Console.Write("│");
-        // 이름과 직업
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.Write($"     [ {playerCharacter.name} ] ");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.Write($"- {playerCharacter.jobName}".PadRight(contentWidth - 12));
-        Console.ResetColor();
-        Console.WriteLine("│");
 
-        // 레벨
-        Console.Write("│");
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.Write($"LV. {playerCharacter.level} ({playerCharacter.currentExp} / {playerCharacter.maxExp})".PadRight(contentWidth + 3));
-        Console.ResetColor();
-        Console.WriteLine("│");
-
-        // 공격력
-        Console.Write("│");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write($"공격력: {playerCharacter.stats.minAttack} ~ {playerCharacter.stats.maxAttack}     ".PadRight(contentWidth));
-        Console.ResetColor();
-        Console.WriteLine("│");
-
-        // 방어력
-        Console.Write("│"); Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"방어력: {playerCharacter.stats.minArmor} ~ {playerCharacter.stats.maxArmor}       ".PadRight(contentWidth));
-        Console.ResetColor();
-        Console.WriteLine("│");
-
-        // 체력
-        Console.Write("│"); Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"체력  : {playerCharacter.health}/{playerCharacter.stats.maxHealth}     ".PadRight(contentWidth + 1));
-        Console.ResetColor();
-        Console.WriteLine("│");
-
-        // 골드
-        Console.ResetColor();
-        Console.Write("│");
-        Console.Write($"골드  : {playerState.gold} G      ".PadRight(contentWidth + 1));
-        Console.WriteLine("│");
-
-        Console.WriteLine("└──────────────────────────┘");
-
+        Console.SetCursorPosition(0, 15);
         Console.WriteLine("\n[아무키]를 눌러 돌아가기");
 
         Console.ReadKey(true);
+    }
+
+    // 텍스트를 색상과 함께 출력
+    private void PrintColoredText(string text, int x, int y, ConsoleColor color)
+    {
+        Console.SetCursorPosition(x, y); // 출력할 커서 위치 설정
+        Console.ForegroundColor = color; // 텍스트 색상 설정
+        Console.Write(text);             // 텍스트 출력
+        Console.ResetColor();            // 기본 색상으로 복원
     }
 
     public IScene GetNextScene()
