@@ -35,7 +35,7 @@ public class DungeonScene : IScene
         Console.WriteLine("│                         앗! 야생의 몬스터가 나타났다! 어떡하지?                        │");
         Console.WriteLine("│                                                                                        │");
         Console.WriteLine("└────────────────────────────────────────────────────────────────────────────────────────┘");
-        Thread.Sleep(1000);
+        Thread.Sleep(2500);
         bool isOnBattle = true;
         while (isOnBattle)
         {
