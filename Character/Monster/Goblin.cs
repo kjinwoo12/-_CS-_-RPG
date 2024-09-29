@@ -21,7 +21,7 @@ public class Goblin : Monster
         
         if(rnd.Next(0, 10) < 2)
         {
-            rewardItems.Add(new TrashSword());
+            rewardItems.Add(new TrashSwordToy());
         }
 
         if(rnd.Next(0, 10) < 1)

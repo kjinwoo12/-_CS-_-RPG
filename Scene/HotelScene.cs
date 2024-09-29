@@ -24,7 +24,8 @@ public class HotelScene : IScene
         Console.Write("용병");
         Console.ResetColor();
         Console.WriteLine("고용");
-        Console.WriteLine("3. 나가기");
+        Console.WriteLine("3. 대화하기");
+        Console.WriteLine("4. 나가기");
         
         while(true)
         {
@@ -40,6 +41,11 @@ public class HotelScene : IScene
                 break;
             }
             else if (keyInfo.KeyChar == '3')
+            {
+                nextScene = new NpcScene();
+                break;
+            }
+            else if (keyInfo.KeyChar == '4')
             {
                 nextScene = new SpartaTownScene();
                 break;

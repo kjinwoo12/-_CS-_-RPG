@@ -18,7 +18,7 @@ class ProductManager
         AddProduct(1000, typeof(HealthPotion));
 
         //Weapon
-        AddProduct(500, typeof(TrashSword));
+        AddProduct(500, typeof(TrashSwordToy));
         AddProduct(2000, typeof(WoodStick));
         AddProduct(8000, typeof(Dagger));
         AddProduct(32000, typeof(Pistol));

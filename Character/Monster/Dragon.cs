@@ -3,7 +3,7 @@
 public class Dragon : Monster
 {
     public Dragon()
-        : this("드래곤")
+        : this("드래곤 알")
     {
     }
 
@@ -15,9 +15,9 @@ public class Dragon : Monster
 
         Random rnd = new Random();
 
-        if (rnd.Next(0, 100) < 1)
+        if (rnd.Next(0, 100) < 31)
         {
-            rewardItems.Add(new DragonArmor());
+            rewardItems.Add(new PaperArmor());
         }
 
         if (rnd.Next(0, 100) < 1)
