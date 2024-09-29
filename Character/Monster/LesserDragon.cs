@@ -3,7 +3,7 @@
 public class LesserDragon : Monster
 {
     public LesserDragon()
-        : base("드래곤", new CharacterStats(300, 30, 50, 25, 35))
+        : base("드래곤", new CharacterStats(300, 30, 50, 25, 35, 8, 15, 15))
     {
         rewardGold = 5500;
         rewardExp = 25;
