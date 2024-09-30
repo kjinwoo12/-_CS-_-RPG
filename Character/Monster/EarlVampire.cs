@@ -18,5 +18,9 @@ public class EarlVampire : Monster
         {
             rewardItems.Add(new MagicArmor());
         }
+
+        monsterAiComponent.AddActionWeight(new AiAction_AttackOne(this), 10);
+        monsterAiComponent.AddActionWeight(new AiAction_AttackThree(this), 7);
+        monsterAiComponent.AddActionWeight(new AiAction_HealAll(this), 2);
     }
 }

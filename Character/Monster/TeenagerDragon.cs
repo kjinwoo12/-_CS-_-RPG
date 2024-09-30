@@ -19,5 +19,9 @@ public class TeenagerDragon : Monster
         {
             rewardItems.Add(new StrengthPotion());
         }
+
+        monsterAiComponent.AddActionWeight(new AiAction_AttackOne(this), 8);
+        monsterAiComponent.AddActionWeight(new AiAction_AttackThree(this), 5);
+        monsterAiComponent.AddActionWeight(new AiAction_HealOne(this), 1);
     }
 }
