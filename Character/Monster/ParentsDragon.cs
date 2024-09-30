@@ -19,5 +19,9 @@ public class ParentsDragon : Monster
         {
             rewardItems.Add(new StrengthPotion());
         }
+
+        monsterAiComponent.AddActionWeight(new AiAction_AttackOne(this), 10);
+        monsterAiComponent.AddActionWeight(new AiAction_AttackThree(this), 15);
+        monsterAiComponent.AddActionWeight(new AiAction_HealAll(this), 7);
     }
 }

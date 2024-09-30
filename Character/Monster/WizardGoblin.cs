@@ -23,6 +23,10 @@ public class WizardGoblin : Monster
         {
             rewardItems.Add(new PaperArmor());
         }
+
+        monsterAiComponent.AddActionWeight(new AiAction_AttackOne(this), 2);
+        monsterAiComponent.AddActionWeight(new AiAction_AttackThree(this), 7);
+        monsterAiComponent.AddActionWeight(new AiAction_HealAll(this), 12);
     }
 }
   

@@ -23,5 +23,9 @@ public class Vampire : Monster
         {
             rewardItems.Add(new MagicArmor());
         }
+
+        monsterAiComponent.AddActionWeight(new AiAction_AttackOne(this), 8);
+        monsterAiComponent.AddActionWeight(new AiAction_AttackThree(this), 3);
+        monsterAiComponent.AddActionWeight(new AiAction_HealAll(this), 1);
     }
 }

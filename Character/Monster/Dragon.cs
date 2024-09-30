@@ -24,5 +24,9 @@ public class Dragon : Monster
         {
             rewardItems.Add(new StrengthPotion());
         }
+
+        monsterAiComponent.AddActionWeight(new AiAction_AttackOne(this), 10);
+        monsterAiComponent.AddActionWeight(new AiAction_AttackThree(this), 2);
+        monsterAiComponent.AddActionWeight(new AiAction_HealOne(this), 1);
     }
 }

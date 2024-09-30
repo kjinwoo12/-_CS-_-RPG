@@ -23,5 +23,9 @@ public class EliteGoblin : Monster
         {
             rewardItems.Add(new PaperArmor());
         }
+
+        monsterAiComponent.AddActionWeight(new AiAction_AttackOne(this), 7);
+        monsterAiComponent.AddActionWeight(new AiAction_AttackThree(this), 3);
+        monsterAiComponent.AddActionWeight(new AiAction_HealOne(this), 5);
     }
 }

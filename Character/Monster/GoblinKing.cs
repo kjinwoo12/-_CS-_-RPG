@@ -23,5 +23,9 @@ public class GoblinKing : Monster
         {
             rewardItems.Add(new NormalArmor());
         }
+
+        monsterAiComponent.AddActionWeight(new AiAction_AttackOne(this), 10);
+        monsterAiComponent.AddActionWeight(new AiAction_AttackThree(this), 6);
+        monsterAiComponent.AddActionWeight(new AiAction_HealAll(this), 4);
     }
 }
