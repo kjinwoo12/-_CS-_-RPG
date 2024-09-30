@@ -18,6 +18,8 @@ internal class MercenaryManager
         Mercenaries.Add(new SkilledArcher());
         Mercenaries.Add(new SkilledArcher());
         Mercenaries.Add(new SkilledArcher());
+        Mercenaries.Add(new SkilledArcher());
+        Mercenaries.Add(new SkilledArcher());
 
     }
 }
