@@ -3,7 +3,12 @@
 public class EliteGoblin : Monster
 {
     public EliteGoblin()
-        : base("엘리트 고블린", new CharacterStats(70, 7, 12, 2, 5, 3, 7, 8))
+        : this("엘리트 고블린")
+    {
+    }
+
+    public EliteGoblin(string name)
+        : base(name, new CharacterStats(70, 7, 12, 2, 5, 3, 7, 8))
     {
         rewardGold = 55;
         rewardExp = 7;
