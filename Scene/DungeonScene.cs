@@ -14,6 +14,13 @@ public class DungeonScene : IScene
         playerCharacters.Add(GameManager.instance.playerCharacter);
         //#Todo : Add troops into playerCharacters
 
+        foreach (var key in GameManager.instance.mercenarySlot.Keys)
+        {
+            Mercenary value;
+            GameManager.instance.mercenarySlot.TryGetValue(key, out value);
+            playerCharacters.Add(value);
+        }
+
         //========================================
 
         this.monsters = monsters;

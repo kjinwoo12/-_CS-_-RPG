@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public sealed class GameManager
 {
@@ -8,8 +9,11 @@ public sealed class GameManager
     public PlayerCharacter playerCharacter { get; set; } = null;
     public PlayerState playerState { get; }
 
+    public SortedDictionary<int, Mercenary> mercenarySlot { get; }
+
     private GameManager()
     {
         playerState = new PlayerState();
+        mercenarySlot = new SortedDictionary<int, Mercenary>();
     }
 }
