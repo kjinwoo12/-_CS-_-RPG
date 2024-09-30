@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+ internal class SkilledArcher :  Mercenary
+{
+    public SkilledArcher()
+        : this("숙련된 궁수")
+    {
+    }
+
+    public SkilledArcher(string name)
+        : base(name, new CharacterStats(200, 20, 30, 10, 15, 20, 25, 0.4f))
+    {
+        level = 7;
+        jobName = "아쳐";
+        price = 100;
+        description = "오랜 시간의 수련으로 숙련된 궁수이다.";
+    }
+}

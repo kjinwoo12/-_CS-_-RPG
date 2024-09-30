@@ -37,7 +37,7 @@ public class HotelScene : IScene
             }
             else if(keyInfo.KeyChar == '2')
             {
-                nextScene = new SpartaTownScene();
+                nextScene = new HireMercenariesScene();
                 break;
             }
             else if (keyInfo.KeyChar == '3')
