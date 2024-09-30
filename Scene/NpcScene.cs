@@ -101,6 +101,7 @@ public class NpcScene : IScene
     {
         Random rnd = new Random();
         int randomNumber = rnd.Next(1, 6);
+        GameManager.instance.playerState.questChecker.unlockNpc(randomNumber);
 
         if (randomNumber == 1)
         {

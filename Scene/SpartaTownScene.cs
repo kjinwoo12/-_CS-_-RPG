@@ -45,6 +45,12 @@ public class SpartaTownScene : IScene
         Console.ResetColor();
         Console.WriteLine("                     │");
         Console.WriteLine("      │                                              │");
+        Console.Write("      │                  ");
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.Write("6. 퀘스트");
+        Console.ResetColor();
+        Console.WriteLine("                   │");
+        Console.WriteLine("      │                                              │");
         Console.WriteLine("      └──────────────────────────────────────────────┘");
         Console.WriteLine("      ┌──────────────────────────────────────────────┐");
         Console.WriteLine("      │                                              │");
@@ -82,6 +88,11 @@ public class SpartaTownScene : IScene
             else if (keyInfo.KeyChar == '5')
             {
                 nextScene = new HotelScene();
+                break;
+            }
+            else if (keyInfo.KeyChar == '6')
+            {
+                nextScene = new QuestCheckingScene();
                 break;
             }
         }
