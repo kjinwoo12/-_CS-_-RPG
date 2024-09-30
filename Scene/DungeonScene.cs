@@ -49,6 +49,7 @@ public class DungeonScene : IScene
             }
             if (turnOwner.isDead)
             {
+                OnTurnEnd();
                 continue;
             }
             DoTurn(turnOwner);
