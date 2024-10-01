@@ -9,9 +9,15 @@ public class HealthPotion : IConsumableItem
     public void OnUsed(Character target)
     {
         Console.WriteLine("하급 체력포션을 사용합니다. 체력을 +20 회복합니다.");
-        CharacterStats stats = target.additionalStats;
+
         target.health += 20;
-        target.additionalStats = stats;
+
+        if (target.health > target.stats.maxHealth)
+        {
+            target.health = target.stats.maxHealth;
+            
+        }
+        
         Thread.Sleep(1000);
     }
 }
