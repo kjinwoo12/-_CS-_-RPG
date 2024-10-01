@@ -95,8 +95,6 @@ public class NpcScene : IScene
         }
     }
 
-    
-
    public void OnShow()
     {
         Random rnd = new Random();
@@ -119,7 +117,9 @@ public class NpcScene : IScene
                 Console.Write(scripts[i]);
                 Console.WriteLine();
             }
-            
+
+            AsciiArt.Draw("img\\NpcNg.png", 30, 17, 30);
+
         }
         else if (randomNumber == 2)
         {
@@ -137,6 +137,7 @@ public class NpcScene : IScene
                 Console.WriteLine();
             }
 
+            AsciiArt.Draw("img\\NpcCh.png", 30, 13, 30);
 
         }
         else if (randomNumber == 3)
@@ -154,7 +155,7 @@ public class NpcScene : IScene
                 Console.Write(hwnpc[i]);
                 Console.WriteLine();
             }
-
+            AsciiArt.Draw("img\\NpcHw.png", 30, 13, 30);
         }
         else if (randomNumber == 4)
         {
@@ -171,6 +172,7 @@ public class NpcScene : IScene
                 Console.Write(msnpc[i]);
                 Console.WriteLine();
             }
+            AsciiArt.Draw("img\\NpcMs.png", 30, 13, 30);
 
         }
         else if (randomNumber == 5)
@@ -188,6 +190,7 @@ public class NpcScene : IScene
                 Console.Write(jwnpc[i]);
                 Console.WriteLine();
             }
+            AsciiArt.Draw("img\\NpcJw.png", 30, 13, 30);
 
         }
         WaitForSpacebar();

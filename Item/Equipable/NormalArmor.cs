@@ -1,6 +1,6 @@
 ﻿public class NormalArmor : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(-10, 0, 0, 3, 2);
+    public CharacterStats additionalStats => new CharacterStats(-10, 0, 0, 3, 2, 0, 0, 0.0f, 0.0f);
 
     public string name => "평범한 갑옷";
 

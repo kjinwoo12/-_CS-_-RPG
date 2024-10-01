@@ -16,6 +16,10 @@ class ProductManager
         //Consumable
         AddProduct(10000, typeof(StrengthPotion));
         AddProduct(1000, typeof(HealthPotion));
+        AddProduct(3500, typeof(MediumHealthPotion));
+        AddProduct(9000, typeof(HighClassHealthPotion));
+
+
 
         //Weapon
         AddProduct(500, typeof(TrashSwordToy));

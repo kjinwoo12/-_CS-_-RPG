@@ -1,6 +1,6 @@
 ﻿public class DragonArmor : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(50, 0, 0, 5, 5);
+    public CharacterStats additionalStats => new CharacterStats(50, 0, 0, 5, 5, 0, 0, 0.0f, 0.0f);
 
     public string name => "드래곤 갑옷";
 

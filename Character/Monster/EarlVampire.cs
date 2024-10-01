@@ -7,7 +7,7 @@ public class EarlVampire : Monster
     {
     }
     public EarlVampire(string name)
-        : base(name, new CharacterStats(150, 15, 25, 10, 15, 7, 10, 12))
+        : base(name, new CharacterStats(150, 15, 25, 10, 15, 7, 10, 0.15f, 0.15f))
     {
         rewardGold = 700;
         rewardExp = 15;

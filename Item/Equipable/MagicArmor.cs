@@ -1,6 +1,6 @@
 ﻿public class MagicArmor : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(0, 0, 0, 4, 8);
+    public CharacterStats additionalStats => new CharacterStats(0, 0, 0, 4, 8, 0, 0, 0.0f, 0.0f);
 
     public string name => "마법 갑옷";
 

@@ -1,6 +1,6 @@
 ﻿public class Dagger : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(0, 2, 4, 0, 0);
+    public CharacterStats additionalStats => new CharacterStats(0, 2, 4, 0, 0, 0, 0, 0.0f, 0.0f);
 
     public string name => "단검\t";
 
