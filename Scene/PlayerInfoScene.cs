@@ -28,11 +28,11 @@ public class PlayerInfoScene : IScene
         PlayerCharacter playerCharacter = GameManager.instance.playerCharacter;
         PlayerState playerState = GameManager.instance.playerState;
         
-        DrawInfo playerDrawInfo = new DrawInfo(48, 10, 6, 3, ConsoleColor.Red);
-        DrawInfo mercenaryDrawInfo = new DrawInfo(30, 9, 6, 16, ConsoleColor.Blue);
+        DrawInfo playerDrawInfo = new DrawInfo(48, 11, 6, 3, ConsoleColor.Red);
+        DrawInfo mercenaryDrawInfo = new DrawInfo(30, 10, 6, 16, ConsoleColor.Blue);
 
         PrintStats(playerCharacter, playerDrawInfo);
-        PrintColoredText($"골드     : {playerState.gold} G", 8, 11, ConsoleColor.DarkYellow);
+        PrintColoredText($"골드     : {playerState.gold} G", 8, 12, ConsoleColor.DarkYellow);
 
         Console.SetCursorPosition(0, 15);
         Console.WriteLine("[고용한 용병 목록]");
@@ -63,6 +63,7 @@ public class PlayerInfoScene : IScene
             $"체력     : {character.health}/{character.stats.maxHealth}",
             $"공격력   : {character.stats.minAttack} ~ {character.stats.maxAttack}",
             $"방어력   : {character.stats.minArmor} ~ {character.stats.maxArmor}",
+            $"민첩     : {character.stats.minAgility} ~ {character.stats.maxAgility}",
             $"치명타율 : {(int)(character.stats.criticalRate * 100)}%",
             $"회피율   : {(int)(character.stats.avoidRate* 100f)}%",
           };
@@ -80,14 +81,15 @@ public class PlayerInfoScene : IScene
         {
             ConsoleColor textColor = i switch
             {
-                0 => ConsoleColor.Yellow,  // 이름과 직업은 노란색
-                1 => ConsoleColor.Yellow,  // 레벨은 노란색
-                2 => ConsoleColor.Green,   // 체력은 초록색
-                3 => ConsoleColor.Red,     // 공격력은 빨간색
-                4 => ConsoleColor.Blue,    // 방어력은 파란색
-                5 => ConsoleColor.Magenta, // 치명타율은 자주색
-                6 => ConsoleColor.Cyan,    // 회피율은 청록
-                _ => ConsoleColor.White,   // 기본 색상
+                0 => ConsoleColor.Yellow,      // 이름과 직업은 노란색
+                1 => ConsoleColor.Yellow,      // 레벨은 노란색
+                2 => ConsoleColor.Green,       // 체력은 초록색
+                3 => ConsoleColor.Red,         // 공격력은 빨간색
+                4 => ConsoleColor.Blue,        // 방어력은 파란색
+                5 => ConsoleColor.Cyan,        // 민첩은 청록색
+                6 => ConsoleColor.DarkRed,     // 치명타율은 다크레드
+                7 => ConsoleColor.Magenta,     // 회피율은 자주색
+                _ => ConsoleColor.White,       // 기본 색상
             };
             PrintColoredText(lines[i], drawInfo.cursorX + 2, drawInfo.cursorY + i + 1, textColor);
         }
