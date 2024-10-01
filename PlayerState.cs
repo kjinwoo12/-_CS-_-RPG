@@ -5,6 +5,7 @@ public class PlayerState
 {
     public int gold { get; set; } = 1500;
     public List<IItem> inventory = new List<IItem>();
+    public NpcUnlockChecker questChecker { get; } = new NpcUnlockChecker();
 
     public bool HasSameItem(IItem item)
     {
