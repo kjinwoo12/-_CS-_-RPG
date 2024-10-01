@@ -3,14 +3,14 @@ using System.Threading;
 
 public class HealthPotion : IConsumableItem
 {
-    public string name => "체력 포션";
-    public string description => "최대체력 +1 증가";
+    public string name => "하급 체력포션";
+    public string description => "체력 +20 회복";
 
     public void OnUsed(Character target)
     {
-        Console.WriteLine("체력 포션을 사용합니다. 최대 체력이 영구적으로 +1 상승합니다.");
+        Console.WriteLine("하급 체력포션을 사용합니다. 체력을 +20 회복합니다.");
         CharacterStats stats = target.additionalStats;
-        stats.maxHealth += 1;
+        target.health += 20;
         target.additionalStats = stats;
         Thread.Sleep(1000);
     }
