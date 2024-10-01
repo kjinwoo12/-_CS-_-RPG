@@ -1,6 +1,6 @@
 ﻿public class PaperArmor : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(0, -1, 0, 1, 1);
+    public CharacterStats additionalStats => new CharacterStats(0, -1, 0, 1, 1, 0, 0, 0.0f, 0.0f);
 
     public string name => "종이 갑옷";
 

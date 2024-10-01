@@ -73,6 +73,24 @@ public class CreateCharacterScene : IScene
                 GameManager.instance.playerCharacter = new Thief(name);
                 break;
             }
+            else if(keyInfo.KeyChar == '3')
+            {
+                GameManager.instance.playerCharacter = new Monk(name);
+                break;
+
+            }
+            else if (keyInfo.KeyChar == '4')
+            {
+                GameManager.instance.playerCharacter = new Magician(name);
+                break;
+
+            }
+            else if (keyInfo.KeyChar == '5')
+            {
+                GameManager.instance.playerCharacter = new Archer(name);
+                break;
+
+            }
         }
     }
 

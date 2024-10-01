@@ -3,7 +3,12 @@
 public class WizardGoblin : Monster
 {
     public WizardGoblin()
-        : base ("마법사 고블린", new CharacterStats(80, 8, 13, 3, 6, 2, 5, 10))
+        : this("마법사 고블린")
+    {
+    }
+
+    public WizardGoblin(string name)
+        : base (name, new CharacterStats(80, 8, 13, 3, 6, 2, 5, 0.1f, 0.1f))
     {
         rewardGold = 60;
         rewardExp = 8;

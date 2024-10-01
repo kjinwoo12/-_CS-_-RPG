@@ -1,6 +1,6 @@
 ﻿public class Clothes : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(0, 0, 0, 1, 1);
+    public CharacterStats additionalStats => new CharacterStats(0, 0, 0, 1, 1, 0, 0, 0.0f, 0.0f);
 
     public string name => "평범한 옷";
 

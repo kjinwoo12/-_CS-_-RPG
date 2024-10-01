@@ -16,8 +16,10 @@ internal class MercenaryManager
         Mercenaries = new List<Mercenary>();
 
         Mercenaries.Add(new SkilledArcher());
-        Mercenaries.Add(new SkilledArcher());
-        Mercenaries.Add(new SkilledArcher());
+        Mercenaries.Add(new SkilledMagician());
+        Mercenaries.Add(new SkilledMonk());
+        Mercenaries.Add(new SkilledThief());
+        Mercenaries.Add(new SkilledWarrior());
 
     }
 }

@@ -19,6 +19,8 @@ public class DungeonScene : IScene
         {
             Mercenary value;
             GameManager.instance.mercenarySlot.TryGetValue(key, out value);
+            if (value.name == "빈 슬롯")
+                continue;
             playerCharacters.Add(value);
         }
 
