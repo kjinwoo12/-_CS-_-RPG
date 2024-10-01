@@ -1,6 +1,6 @@
 ﻿public class LeatherArmor : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(10, 0, 0, 1, 2);
+    public CharacterStats additionalStats => new CharacterStats(10, 0, 0, 1, 2, 0, 0, 0.0f, 0.0f);
 
     public string name => "가죽 갑옷";
 

@@ -6,9 +6,10 @@
         int maxAttack = 20,
         int minArmor = 5,
         int maxArmor = 10,
-        int minAgility = 0,
+        int minAgility = 1,
         int maxAgility = 3, 
-        float criticalRate = 0.1f)
+        float criticalRate = 0.1f,
+        float avoidRate = 0.1f)
     {
         this.maxHealth = maxHealth;
         this.minAttack = minAttack;
@@ -18,6 +19,7 @@
         this.minAgility = minAgility;
         this.maxAgility = maxAgility;
         this.criticalRate = criticalRate;
+        this.avoidRate = avoidRate;
     }
 
     public int maxHealth { get; set; }
@@ -28,6 +30,7 @@
     public int minAgility { get; set; }
     public int maxAgility { get; set; }
     public float criticalRate { get; set; }
+    public float avoidRate { get; set; }
 
     public static CharacterStats operator +(CharacterStats stat1, CharacterStats stat2)
     {
@@ -39,7 +42,8 @@
             stat1.maxArmor + stat2.maxArmor,
             stat1.minAgility + stat2.minAgility,
             stat1.maxAgility + stat2.maxAgility,
-            stat1.criticalRate + stat2.criticalRate);
+            stat1.criticalRate + stat2.criticalRate,
+            stat1.avoidRate + stat2.avoidRate);
         return result;
     }
 
@@ -53,7 +57,8 @@
             stat1.maxArmor - stat2.maxArmor,
             stat1.minAgility - stat2.minAgility,
             stat1.maxAgility - stat2.maxAgility,
-            stat1.criticalRate - stat2.criticalRate);
+            stat1.criticalRate - stat2.criticalRate,
+            stat1.avoidRate + stat2.avoidRate);
         return result;
     }
 }

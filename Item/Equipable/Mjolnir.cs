@@ -1,6 +1,6 @@
 ﻿public class Mjolnir : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(-15, 2, 3, 0, 0);
+    public CharacterStats additionalStats => new CharacterStats(-15, 2, 3, 0, 0, 0, 0, 0.0f, 0.0f);
 
     public string name => "묠니르";
 

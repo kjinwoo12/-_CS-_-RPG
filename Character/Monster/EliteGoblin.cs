@@ -8,7 +8,7 @@ public class EliteGoblin : Monster
     }
 
     public EliteGoblin(string name)
-        : base(name, new CharacterStats(70, 7, 12, 2, 5, 3, 7, 8))
+        : base(name, new CharacterStats(70, 7, 12, 2, 5, 3, 7, 0.08f, 0.08f))
     {
         rewardGold = 55;
         rewardExp = 7;

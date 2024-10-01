@@ -65,11 +65,12 @@ internal class HireMercenariesScene : IScene
         foreach (KeyValuePair<int, Mercenary> mercenary in mercenarySlot)
         {
             Console.WriteLine($"- {mercenary.Key} : {mercenary.Value.name}\t| Lv : {mercenary.Value.level} | 직업 : {mercenary.Value.jobName}\t| {mercenary.Value.description} |");
-            Console.Write($"|체력 :  {mercenary.Value.stats.maxHealth}\t");
+            Console.Write($"| 체력 :  {mercenary.Value.stats.maxHealth}\t");
             Console.Write($"|공격력 : {mercenary.Value.stats.minAttack}~{mercenary.Value.stats.maxAttack}\t");
             Console.Write($"|방어력 : {mercenary.Value.stats.minArmor}~{mercenary.Value.stats.maxArmor}\t");
             Console.Write($"|민첩 : {mercenary.Value.stats.minAgility}~{mercenary.Value.stats.maxAgility}\t");
-            Console.WriteLine($"|치명타율 : {mercenary.Value.stats.criticalRate}\t|");
+            Console.Write($"|치명타율 : {mercenary.Value.stats.criticalRate}\t");
+            Console.WriteLine($"|  회피율 : {mercenary.Value.stats.avoidRate}\t|");
             Console.WriteLine();
         }
     }
@@ -84,12 +85,13 @@ internal class HireMercenariesScene : IScene
         foreach (Mercenary mercenary in Mercenaries)
         {
             Console.WriteLine($"- {mercenary.name}\t| Lv : {mercenary.level} | 직업 : {mercenary.jobName}\t| {mercenary.description} |");
-            Console.Write($"|체력 : {mercenary.stats.maxHealth}\t");
+            Console.Write($"| 체력 : {mercenary.stats.maxHealth}\t");
             Console.Write($"|공격력 : {mercenary.stats.minAttack}~{mercenary.stats.maxAttack}\t");
             Console.Write($"|방어력 : {mercenary.stats.minArmor}~{mercenary.stats.maxArmor}\t");
             Console.Write($"|민첩 : {mercenary.stats.minAgility}~{mercenary.stats.maxAgility}\t");
             Console.Write($"|치명타율 : {mercenary.stats.criticalRate}\t");
-            Console.WriteLine($"|가격 : {mercenary.price}\t|");
+            Console.Write($"|  회피율 : {mercenary.stats.avoidRate}\t");
+            Console.WriteLine($"|  가격 : {mercenary.price}\t|");
             Console.WriteLine();
         }
     }

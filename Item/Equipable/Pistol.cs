@@ -1,6 +1,6 @@
 ﻿public class Pistol : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(-10, -3, 6, 0, 0);
+    public CharacterStats additionalStats => new CharacterStats(-10, -3, 6, 0, 0, 0, 0, 0.0f, 0.0f);
 
     public string name => "권총\t";
 
