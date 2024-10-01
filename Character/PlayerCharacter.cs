@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using System;
+using System.Collections.Generic;
 
 public class PlayerCharacter : Character
 {
@@ -6,10 +8,12 @@ public class PlayerCharacter : Character
 
     public int maxExp { get; private set; } = 10;
     public int currentExp { get; set; } = 0;
-    public PlayerCharacter(string name, CharacterStats stats)
-        : base(name, stats)
+   
+
+    public PlayerCharacter(string name, CharacterStats originalStats) : base(name, originalStats)
     {
     }
+
 
     public void ConsumeItem(IConsumableItem item)
     {
