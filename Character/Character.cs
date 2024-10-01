@@ -40,7 +40,7 @@ public class Character
             attackOrderInfo.attackType = AttackType.CRITICAL;
             int minCriticalAttack = (int)Math.Ceiling(this.stats.minAttack * 1.6f);
             int maxCriticalAttack = (int)Math.Ceiling(this.stats.maxAttack * 1.6f);
-            float damageTemp = new Random().Next(minCriticalAttack, maxCriticalAttack + 1);
+            attackOrderInfo.damage = new Random().Next(minCriticalAttack, maxCriticalAttack + 1);
         }
         else
         {
