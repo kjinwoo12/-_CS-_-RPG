@@ -12,7 +12,7 @@ using System.Threading.Tasks;
     }
 
     public SkilledArcher(string name)
-        : base(name, new CharacterStats(200, 20, 30, 10, 15, 20, 25, 0.4f, 0.3f))
+        : base(name, new CharacterStats(200, 23, 30, 13, 15, 20, 25, 0.35f, 0.3f))
     {
         level = 7;
         jobName = "아쳐";
