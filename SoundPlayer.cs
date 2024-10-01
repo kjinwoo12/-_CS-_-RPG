@@ -9,7 +9,7 @@ class SoundPlayer
     {
     }
 
-    public void Play(string filePath, float volume = 0.5f)
+    public void Play(string filePath, float volume = 0.01f)
     {
         filePath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\" + filePath;
         var reader = new Mp3FileReader(filePath);

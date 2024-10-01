@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 public class Character
@@ -15,6 +16,8 @@ public class Character
             return originalStats + additionalStats;
         }
     }
+    public List<Skill> skills { get; set; }
+
 
     public EquipmentComponent equipmentComponent { get; } = new EquipmentComponent();
     public int health { get; set; }
@@ -28,6 +31,13 @@ public class Character
         this.health = originalStats.maxHealth;
         equipmentComponent.OnEquipDelegate += OnEquip;
         equipmentComponent.OnUnequipDelegate += OnUnequip;
+
+        skills = new List<Skill>();
+    }
+
+    public void AddSkill(Skill skill)
+    {
+        skills.Add(skill);
     }
 
     public AttackOrderInfo CreateAttackOrder(Character target)

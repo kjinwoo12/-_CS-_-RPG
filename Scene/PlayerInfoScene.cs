@@ -32,13 +32,13 @@ public class PlayerInfoScene : IScene
         {
             ConsoleColor textColor = i switch
             {
-                0 => ConsoleColor.Yellow,  // 이름과 직업은 노란색
+                0 => ConsoleColor.Yellow,   // 이름과 직업은 노란색
                 1 => ConsoleColor.Yellow,   // 레벨은 노란색
-                2 => ConsoleColor.Red,     // 공격력은 빨간색
-                3 => ConsoleColor.Blue,    // 방어력은 파란색
-                4 => ConsoleColor.Green, // 체력은 초록색
-                5 => ConsoleColor.Gray,    // 골드는 회색
-                _ => ConsoleColor.White,   // 기본 색상
+                2 => ConsoleColor.Red,      // 공격력은 빨간색
+                3 => ConsoleColor.Blue,     // 방어력은 파란색
+                4 => ConsoleColor.Green,    // 체력은 초록색
+                5 => ConsoleColor.Gray,     // 골드는 회색
+                _ => ConsoleColor.White,    // 기본 색상
             };
             PrintColoredText(lines[i], 8, 4 + i, textColor);
         }
