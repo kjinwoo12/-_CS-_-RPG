@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public abstract class AiAction
+public abstract class AiAction : TargetingValidator
 {
     public string actionName { get; private set; }
     protected Monster owner;
@@ -10,22 +10,6 @@ public abstract class AiAction
         this.actionName = actionName;
         this.owner = owner;
     }
-    public abstract bool IsValidFor(Character target);
-
-    protected virtual List<Character> ParseValidTargetCandidatesFrom(List<Character> targets)
-    {
-        List<Character> result = new List<Character>();
-        foreach (Character target in targets)
-        {
-            if(IsValidFor(target))
-            {
-                result.Add(target);
-            }
-        }
-        return result;
-    }
-
-    public abstract List<Character> SelectTargetsFrom(List<Character> targets);
 }
 
 public class AiAction_AttackOne : AiAction

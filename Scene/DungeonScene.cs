@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 
+
 public class DungeonScene : IScene
 {
     private List<PlayerCharacter> playerCharacters = new List<PlayerCharacter>();
@@ -25,6 +26,8 @@ public class DungeonScene : IScene
 
         //========================================
 
+
+
         this.monsters = monsters;
     }
 
@@ -35,6 +38,8 @@ public class DungeonScene : IScene
 
     public void OnShow()
     {
+        SkillManager skillManager = new SkillManager();  // 스킬 매니저 생성
+
         SoundPlayer soundPlayer = new SoundPlayer();
         soundPlayer.Play("sound\\pokemon-battle.mp3");
         AsciiArt.Draw("img\\MeetEnemy01.jpg", 90);
@@ -61,7 +66,7 @@ public class DungeonScene : IScene
                 OnTurnEnd();
                 continue;
             }
-            DoTurn(turnOwner);
+            DoTurn(turnOwner, skillManager);
             Thread.Sleep(1000);
             if (IsAllPlayerCharacterDead())
             {
@@ -182,12 +187,12 @@ public class DungeonScene : IScene
         turnOrderIndex++;
     }
 
-    private void DoTurn(Character turnOwner)
+    private void DoTurn(Character turnOwner, SkillManager skillManager)
     {
         Console.WriteLine($"[ {turnOwner.name}의 턴 ]");
         if(turnOwner is PlayerCharacter)
         {
-            DoPlayerTurn((PlayerCharacter)turnOwner);
+            DoPlayerTurn((PlayerCharacter)turnOwner, skillManager, monsters);
         }
         else if(turnOwner is Monster)
         {
@@ -195,8 +200,9 @@ public class DungeonScene : IScene
         }
     }
 
-    private void DoPlayerTurn(PlayerCharacter turnOwner)
+    private void DoPlayerTurn(PlayerCharacter turnOwner, SkillManager skillManager, List<Monster> monsters)
     {
+
         Console.WriteLine("행동 선택");
         Console.WriteLine("1.공격 2.스킬 3.아이템 사용");
         while (true)
@@ -210,6 +216,11 @@ public class DungeonScene : IScene
             }
             else if (keyInfo.KeyChar == '2')
             {
+                bool skillUsed = skillManager.DisplaySkill(turnOwner, monsters);
+                if (!skillUsed)
+                {
+                    continue; // 스킬 취소 -> 다시 행동 선택
+                }
                 break;
             }
             else if (keyInfo.KeyChar == '3')
@@ -218,7 +229,7 @@ public class DungeonScene : IScene
             }
         }
     }
-
+   
     private Monster PlayerAttackTargeting(PlayerCharacter turnOwner)
     {
         Console.WriteLine("\n공격 대상 선택");
