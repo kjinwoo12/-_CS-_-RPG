@@ -8,7 +8,7 @@ public class Dragon : Monster
     }
 
     public Dragon(string name)
-        : base(name, new CharacterStats(200, 20, 40, 15, 25, 5, 10, 15))
+        : base(name, new CharacterStats(200, 20, 40, 15, 25, 5, 10, 0.15f, 0.15f))
     {
         rewardGold = 5000;
         rewardExp = 15;

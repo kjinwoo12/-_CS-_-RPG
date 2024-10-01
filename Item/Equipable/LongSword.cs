@@ -8,10 +8,10 @@
             {
                 if(Accessory is SmartPhone)
                 {
-                    return new CharacterStats(0, 10, 10, 0, 0);
+                    return new CharacterStats(0, 10, 10, 0, 0, 0, 0, 0.0f, 0.0f);
                 }
             }
-            return new CharacterStats(0, 4, 4, 0, 0);
+            return new CharacterStats(0, 4, 4, 0, 0, 0, 0, 0.0f, 0.0f);
         }
     }
 

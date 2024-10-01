@@ -1,6 +1,6 @@
 ﻿public class SmartPhone : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(50, 0, 0, 0, 0);
+    public CharacterStats additionalStats => new CharacterStats(50, 0, 0, 0, 0, 0, 0, 0.0f, 0.0f);
 
     public string name => "스마트폰";
 

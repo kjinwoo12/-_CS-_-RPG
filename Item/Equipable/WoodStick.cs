@@ -1,6 +1,6 @@
 ﻿public class WoodStick : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(0, 1, 1, 0, 0);
+    public CharacterStats additionalStats => new CharacterStats(0, 1, 1, 0, 0, 0, 0, 0.0f, 0.0f);
 
     public string name => "나무 막대기";
 

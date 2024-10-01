@@ -1,6 +1,6 @@
 ﻿public class TrashSwordToy : IEquipableItem
 {
-    public CharacterStats additionalStats => new CharacterStats(0, -1, 2, -1, -1);
+    public CharacterStats additionalStats => new CharacterStats(0, -1, 2, -1, -1, 0, 0, 0.0f, 0.0f);
 
     public string name => "쓰레기 검";
 
