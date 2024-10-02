@@ -39,13 +39,19 @@ public class PlayerInfoScene : IScene
 
         SortedDictionary<int, Mercenary> mercenarySlot = GameManager.instance.mercenarySlot;
 
-        foreach (KeyValuePair<int, Mercenary> mercenary in mercenarySlot)
+        for (int i = 1; i <= 3; i++)
         {
-            PrintStats(mercenary.Value, mercenaryDrawInfo);
-            mercenaryDrawInfo.cursorX += 30;
-            
+            if (mercenarySlot.TryGetValue(i, out Mercenary mercenary))
+            {
+                PrintStats(mercenary, mercenaryDrawInfo);
+                mercenaryDrawInfo.cursorX += 30;
+            }
+            else
+            {
+                PrintStats(null, mercenaryDrawInfo);
+                mercenaryDrawInfo.cursorX += 30;
+            }
         }
-
 
 
         Console.SetCursorPosition(0, 25);
@@ -56,8 +62,11 @@ public class PlayerInfoScene : IScene
 
     private void PrintStats(PlayerCharacter character, DrawInfo drawInfo)
     {
-        string[] lines = new string[]
-          {
+        string[] lines;
+        if (character is not null)
+        {
+            lines = new string[]
+              {
             $"[ {character.name} ] - {character.jobName}",
             $"LV. {character.level} ({character.currentExp} / {character.maxExp})",
             $"체력     : {character.health}/{character.stats.maxHealth}",
@@ -66,7 +75,22 @@ public class PlayerInfoScene : IScene
             $"민첩     : {character.stats.minAgility} ~ {character.stats.maxAgility}",
             $"치명타율 : {(int)(character.stats.criticalRate * 100)}%",
             $"회피율   : {(int)(character.stats.avoidRate* 100f)}%",
-          };
+              };
+        }
+        else
+        {
+            lines = new string[]
+             {
+            $"[ 빈 슬롯 ] - 없음",
+            $"LV. 0 (0 / 0)",
+            $"체력     : 0/0",
+            $"공격력   : 0 ~ 0",
+            $"방어력   : 0 ~ 0",
+            $"민첩     : 0 ~ 0",
+            $"치명타율 : 0%",
+            $"회피율   : 0%",
+             };
+        }
 
         // 상태창 화면 확인 글
         Console.SetCursorPosition(0, 0);

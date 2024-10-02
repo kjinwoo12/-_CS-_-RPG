@@ -15,8 +15,5 @@ public sealed class GameManager
     {
         playerState = new PlayerState();
         mercenarySlot = new SortedDictionary<int, Mercenary>();
-        mercenarySlot.Add(0, new Mercenary("빈 슬롯", new CharacterStats(0, 0, 0, 0, 0, 0, 0, 0.0f, 0.0f)));
-        mercenarySlot.Add(1, new Mercenary("빈 슬롯", new CharacterStats(0, 0, 0, 0, 0, 0, 0, 0.0f, 0.0f)));
-        mercenarySlot.Add(2, new Mercenary("빈 슬롯", new CharacterStats(0, 0, 0, 0, 0, 0, 0, 0.0f, 0.0f)));
     }
 }

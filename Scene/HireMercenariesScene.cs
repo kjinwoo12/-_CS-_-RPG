@@ -62,16 +62,25 @@ internal class HireMercenariesScene : IScene
         SortedDictionary<int, Mercenary> mercenarySlot = GameManager.instance.mercenarySlot;
 
         minMyMercenaryCursorTop = Console.CursorTop;
-        foreach (KeyValuePair<int, Mercenary> mercenary in mercenarySlot)
+        for(int i = 1; i <= 3; i++)
         {
-            Console.WriteLine($"- {mercenary.Key} : {mercenary.Value.name}\t| Lv. {mercenary.Value.level} | 직업 : {mercenary.Value.jobName}\t| {mercenary.Value.description} |");
-            Console.Write($"|체력 :  {mercenary.Value.stats.maxHealth}\t");
-            Console.Write($"|공격력 : {mercenary.Value.stats.minAttack}~{mercenary.Value.stats.maxAttack}\t");
-            Console.Write($"|방어력 : {mercenary.Value.stats.minArmor}~{mercenary.Value.stats.maxArmor}\t");
-            Console.Write($"|민첩 : {mercenary.Value.stats.minAgility}~{mercenary.Value.stats.maxAgility}\t");
-            Console.Write($"|치명타율 : {mercenary.Value.stats.criticalRate}\t");
-            Console.WriteLine($"| 회피율 : {mercenary.Value.stats.avoidRate}\t|");
-            Console.WriteLine();
+            if(mercenarySlot.TryGetValue(i, out Mercenary mercenary))
+            {
+                Console.WriteLine($"- {i} : {mercenary.name}\t| Lv. {mercenary.level} | 직업 : {mercenary.jobName}\t| {mercenary.description} |");
+                Console.Write($"|체력 :  {mercenary.stats.maxHealth}\t");
+                Console.Write($"|공격력 : {mercenary.stats.minAttack}~{mercenary.stats.maxAttack}\t");
+                Console.Write($"|방어력 : {mercenary.stats.minArmor}~{mercenary.stats.maxArmor}\t");
+                Console.Write($"|민첩 : {mercenary.stats.minAgility}~{mercenary.stats.maxAgility}\t");
+                Console.Write($"|치명타율 : {mercenary.stats.criticalRate}\t");
+                Console.WriteLine($"| 회피율 : {mercenary.stats.avoidRate}\t|");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine($"- {i} : 빈 슬롯\t| Lv. 0 | 직업 : 없음\t| 빈 슬롯입니다. 여관에서 용병을 고용해 저장할 수 있습니다. |");
+                Console.WriteLine($"|체력 :  0\t|공격력 : 0~0\t|방어력 : 0~0\t|민첩 : 0~0\t|치명타율 : 0\t| 회피율 : 0\t|");
+                Console.WriteLine();
+            }
         }
     }
 
@@ -206,7 +215,7 @@ internal class HireMercenariesScene : IScene
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
                 Console.WriteLine("구매 완료");
-                mercenarySlot[selectedMyMercenaryIndex] = additonalMercenary;
+                mercenarySlot[selectedMyMercenaryIndex + 1] = additonalMercenary;
                 playerState.gold -= additonalMercenary.price;
                 Thread.Sleep(100);
 
