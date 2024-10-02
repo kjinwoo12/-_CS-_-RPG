@@ -18,6 +18,10 @@ class ProductManager
         AddProduct(1000, typeof(HealthPotion));
         AddProduct(3500, typeof(MediumHealthPotion));
         AddProduct(9000, typeof(HighClassHealthPotion));
+        AddProduct(1000, typeof(BigStone));
+        AddProduct(1500, typeof(Brick));
+        AddProduct(500, typeof(BangSnaps));
+
 
 
 
