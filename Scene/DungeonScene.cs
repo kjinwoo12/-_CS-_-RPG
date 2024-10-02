@@ -220,6 +220,16 @@ public class DungeonScene : IScene
             }
             else if (keyInfo.KeyChar == '3')
             {
+                IItem item = SelectItemToUse();
+                if (item is null)
+                {
+                    Console.WriteLine("사용 가능한 아이템이 없습니다.");
+                    Console.WriteLine("다시 행동을 선택하세요(1.공격 2.스킬)");
+                    continue;
+                }
+
+                Character itemTarget = PlayerItemTargeting();
+                ItemTurn(item, itemTarget);
                 break;
             }
         }
@@ -426,6 +436,117 @@ public class DungeonScene : IScene
         //        return false;
         //    }
         //}
+    }
+
+    private IItem SelectItemToUse()
+    {
+        PlayerState playerState = GameManager.instance.playerState;
+        List<IItem> itemListToUse = new List<IItem>();
+
+        Console.WriteLine("[사용 가능한 아이템]");
+        Console.WriteLine("이름 \t| 설명");
+
+        int minCursorTop = Console.CursorTop;
+        foreach (IItem item in playerState.inventory)
+        {
+            if (item is IConsumableItem)
+            {
+                Console.WriteLine($"- {item.name} \t| {item.description}");
+                itemListToUse.Add(item);
+            }
+        }
+
+        if (itemListToUse.Count == 0)
+        {
+            return null;
+        }
+
+
+        int selectedItemIndex = 0;
+        IItem itemToUse;
+        while (true)
+        {
+            Console.SetCursorPosition(0, minCursorTop + selectedItemIndex);
+            Console.Write("*");
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            if (keyInfo.Key == ConsoleKey.Spacebar)
+            {
+                itemToUse = itemListToUse[selectedItemIndex];
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.UpArrow && 0 < selectedItemIndex)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedItemIndex);
+                Console.Write("-");
+                selectedItemIndex--;
+            }
+            else if (keyInfo.Key == ConsoleKey.DownArrow && selectedItemIndex < itemListToUse.Count - 1)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedItemIndex);
+                Console.Write("-");
+                selectedItemIndex++;
+            }
+        }
+        Console.SetCursorPosition(0, minCursorTop + itemListToUse.Count);
+
+        return itemToUse;
+    }
+
+    private Character PlayerItemTargeting()
+    {
+        Console.WriteLine("\n아이템 대상 선택");
+        int minCursorTop = Console.CursorTop;
+        List<Character> characters = GetAllCharacters();
+        List<Character> targets = new List<Character>();
+        foreach (Character character in characters)
+        {
+            if (character.isDead)
+            {
+                continue;
+            }
+
+            targets.Add(character);
+            Console.WriteLine($"- {character.name}");
+        }
+
+        int selectedTargetIndex = 0;
+        Character itemTarget = null;
+        while (true)
+        {
+            Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
+            Console.Write("*");
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            if (keyInfo.Key == ConsoleKey.Spacebar)
+            {
+                itemTarget = targets[selectedTargetIndex];
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.UpArrow && 0 < selectedTargetIndex)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
+                Console.Write("-");
+                selectedTargetIndex--;
+            }
+            else if (keyInfo.Key == ConsoleKey.DownArrow && selectedTargetIndex < targets.Count - 1)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
+                Console.Write("-");
+                selectedTargetIndex++;
+            }
+        }
+        Console.SetCursorPosition(0, minCursorTop + targets.Count);
+        return itemTarget;
+    }
+
+    private void ItemTurn(IItem item, Character itemTarget)
+    {
+        PlayerState playerState = GameManager.instance.playerState;
+
+        Console.WriteLine($"{itemTarget.name}에게 {item.name}을(를) 사용했습니다.");
+        ((IConsumableItem)item).OnUsed(itemTarget);
+        playerState.inventory.Remove(item);
     }
 
     private void DoMonsterTurn(Monster turnOwner)
