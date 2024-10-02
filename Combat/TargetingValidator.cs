@@ -2,7 +2,7 @@
 
 public abstract class TargetingValidator
 {
-    public abstract bool IsValidFor(Character Target);
+    public abstract bool IsValidFor(Character target);
 
     protected virtual List<Character> ParseValidTargetCandidatesFrom(List<Character> targets)
     {

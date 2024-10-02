@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public class Mercenary : PlayerCharacter
+﻿public class Mercenary : PlayerCharacter
 {
     public string jobName { get; set; } = "없음";
 
