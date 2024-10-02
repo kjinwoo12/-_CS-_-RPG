@@ -24,6 +24,8 @@ public class Character
 
     public bool isDead => health <= 0;
 
+    public bool isAvoid => new Random().NextDouble() <= this.stats.avoidRate;
+
     public Character(string name, CharacterStats originalStats)
     {
         this.name = name;

@@ -283,26 +283,33 @@ public class DungeonScene : IScene
 
     private void AttackTurn(Character turnOwner, Character attackTarget)
     {
-        AttackOrderInfo attackOrder = turnOwner.CreateAttackOrder(attackTarget);
-        DefenseOrderInfo defenseOrder = attackTarget.CreateDefenseOrder(attackOrder);
-        attackTarget.health -= defenseOrder.actualDamage;
-        Console.WriteLine($"{turnOwner.name}이(가) {attackTarget.name}을(를) 공격했습니다.");
-        Thread.Sleep(1000);
-        if (attackOrder.attackType == AttackType.CRITICAL)
+        if (attackTarget.isAvoid)
         {
-            Console.WriteLine("치명적인 공격!");
-            Thread.Sleep(1000);
+            Console.WriteLine($"{attackTarget.name}이(가) {turnOwner.name}의 공격을 회피했습니다.");
         }
-        else if (attackOrder.attackType == AttackType.WEAK)
+        else
         {
-            Console.WriteLine($"{turnOwner.name}의 실수로 공격이 약해집니다.");
+            AttackOrderInfo attackOrder = turnOwner.CreateAttackOrder(attackTarget);
+            DefenseOrderInfo defenseOrder = attackTarget.CreateDefenseOrder(attackOrder);
+            attackTarget.health -= defenseOrder.actualDamage;
+            Console.WriteLine($"{turnOwner.name}이(가) {attackTarget.name}을(를) 공격했습니다.");
             Thread.Sleep(1000);
-        }
+            if (attackOrder.attackType == AttackType.CRITICAL)
+            {
+                Console.WriteLine("치명적인 공격!");
+                Thread.Sleep(1000);
+            }
+            else if (attackOrder.attackType == AttackType.WEAK)
+            {
+                Console.WriteLine($"{turnOwner.name}의 실수로 공격이 약해집니다.");
+                Thread.Sleep(1000);
+            }
 
-        Console.WriteLine($"{turnOwner.name}이(가) {attackOrder.damage}의 데미지를 주었습니다.");
-        Thread.Sleep(1000);
-        Console.WriteLine($"{attackTarget.name}이(가) {defenseOrder.defenseAmount}만큼 방어해 {defenseOrder.actualDamage}의 데미지를 받았습니다.");
-        Console.WriteLine();
+            Console.WriteLine($"{turnOwner.name}이(가) {attackOrder.damage}의 데미지를 주었습니다.");
+            Thread.Sleep(1000);
+            Console.WriteLine($"{attackTarget.name}이(가) {defenseOrder.defenseAmount}만큼 방어해 {defenseOrder.actualDamage}의 데미지를 받았습니다.");
+            Console.WriteLine();
+        }
     }
 
     private List<Character> PlayerSkillTargeting(PlayerCharacter turnOwner)
