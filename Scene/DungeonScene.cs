@@ -220,6 +220,16 @@ public class DungeonScene : IScene
             }
             else if (keyInfo.KeyChar == '3')
             {
+                IItem item = SelectItemToUse();
+                if (item is null)
+                {
+                    Console.WriteLine("사용 가능한 아이템이 없습니다.");
+                    Console.WriteLine("다시 행동을 선택하세요(1.공격 2.스킬)");
+                    continue;
+                }
+
+                Character itemTarget = PlayerItemTargeting();
+                ItemTurn(item, itemTarget);
                 break;
             }
         }
@@ -273,26 +283,33 @@ public class DungeonScene : IScene
 
     private void AttackTurn(Character turnOwner, Character attackTarget)
     {
-        AttackOrderInfo attackOrder = turnOwner.CreateAttackOrder(attackTarget);
-        DefenseOrderInfo defenseOrder = attackTarget.CreateDefenseOrder(attackOrder);
-        attackTarget.health -= defenseOrder.actualDamage;
-        Console.WriteLine($"{turnOwner.name}이(가) {attackTarget.name}을(를) 공격했습니다.");
-        Thread.Sleep(1000);
-        if (attackOrder.attackType == AttackType.CRITICAL)
+        if (attackTarget.isAvoid)
         {
-            Console.WriteLine("치명적인 공격!");
-            Thread.Sleep(1000);
+            Console.WriteLine($"{attackTarget.name}이(가) {turnOwner.name}의 공격을 회피했습니다.");
         }
-        else if (attackOrder.attackType == AttackType.WEAK)
+        else
         {
-            Console.WriteLine($"{turnOwner.name}의 실수로 공격이 약해집니다.");
+            AttackOrderInfo attackOrder = turnOwner.CreateAttackOrder(attackTarget);
+            DefenseOrderInfo defenseOrder = attackTarget.CreateDefenseOrder(attackOrder);
+            attackTarget.health -= defenseOrder.actualDamage;
+            Console.WriteLine($"{turnOwner.name}이(가) {attackTarget.name}을(를) 공격했습니다.");
             Thread.Sleep(1000);
-        }
+            if (attackOrder.attackType == AttackType.CRITICAL)
+            {
+                Console.WriteLine("치명적인 공격!");
+                Thread.Sleep(1000);
+            }
+            else if (attackOrder.attackType == AttackType.WEAK)
+            {
+                Console.WriteLine($"{turnOwner.name}의 실수로 공격이 약해집니다.");
+                Thread.Sleep(1000);
+            }
 
-        Console.WriteLine($"{turnOwner.name}이(가) {attackOrder.damage}의 데미지를 주었습니다.");
-        Thread.Sleep(1000);
-        Console.WriteLine($"{attackTarget.name}이(가) {defenseOrder.defenseAmount}만큼 방어해 {defenseOrder.actualDamage}의 데미지를 받았습니다.");
-        Console.WriteLine();
+            Console.WriteLine($"{turnOwner.name}이(가) {attackOrder.damage}의 데미지를 주었습니다.");
+            Thread.Sleep(1000);
+            Console.WriteLine($"{attackTarget.name}이(가) {defenseOrder.defenseAmount}만큼 방어해 {defenseOrder.actualDamage}의 데미지를 받았습니다.");
+            Console.WriteLine();
+        }
     }
 
     private List<Character> PlayerSkillTargeting(PlayerCharacter turnOwner)
@@ -426,6 +443,117 @@ public class DungeonScene : IScene
         //        return false;
         //    }
         //}
+    }
+
+    private IItem SelectItemToUse()
+    {
+        PlayerState playerState = GameManager.instance.playerState;
+        List<IItem> itemListToUse = new List<IItem>();
+
+        Console.WriteLine("[사용 가능한 아이템]");
+        Console.WriteLine("이름 \t| 설명");
+
+        int minCursorTop = Console.CursorTop;
+        foreach (IItem item in playerState.inventory)
+        {
+            if (item is IConsumableItem)
+            {
+                Console.WriteLine($"- {item.name} \t| {item.description}");
+                itemListToUse.Add(item);
+            }
+        }
+
+        if (itemListToUse.Count == 0)
+        {
+            return null;
+        }
+
+
+        int selectedItemIndex = 0;
+        IItem itemToUse;
+        while (true)
+        {
+            Console.SetCursorPosition(0, minCursorTop + selectedItemIndex);
+            Console.Write("*");
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            if (keyInfo.Key == ConsoleKey.Spacebar)
+            {
+                itemToUse = itemListToUse[selectedItemIndex];
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.UpArrow && 0 < selectedItemIndex)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedItemIndex);
+                Console.Write("-");
+                selectedItemIndex--;
+            }
+            else if (keyInfo.Key == ConsoleKey.DownArrow && selectedItemIndex < itemListToUse.Count - 1)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedItemIndex);
+                Console.Write("-");
+                selectedItemIndex++;
+            }
+        }
+        Console.SetCursorPosition(0, minCursorTop + itemListToUse.Count);
+
+        return itemToUse;
+    }
+
+    private Character PlayerItemTargeting()
+    {
+        Console.WriteLine("\n아이템 대상 선택");
+        int minCursorTop = Console.CursorTop;
+        List<Character> characters = GetAllCharacters();
+        List<Character> targets = new List<Character>();
+        foreach (Character character in characters)
+        {
+            if (character.isDead)
+            {
+                continue;
+            }
+
+            targets.Add(character);
+            Console.WriteLine($"- {character.name}");
+        }
+
+        int selectedTargetIndex = 0;
+        Character itemTarget = null;
+        while (true)
+        {
+            Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
+            Console.Write("*");
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            if (keyInfo.Key == ConsoleKey.Spacebar)
+            {
+                itemTarget = targets[selectedTargetIndex];
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.UpArrow && 0 < selectedTargetIndex)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
+                Console.Write("-");
+                selectedTargetIndex--;
+            }
+            else if (keyInfo.Key == ConsoleKey.DownArrow && selectedTargetIndex < targets.Count - 1)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
+                Console.Write("-");
+                selectedTargetIndex++;
+            }
+        }
+        Console.SetCursorPosition(0, minCursorTop + targets.Count);
+        return itemTarget;
+    }
+
+    private void ItemTurn(IItem item, Character itemTarget)
+    {
+        PlayerState playerState = GameManager.instance.playerState;
+
+        Console.WriteLine($"{itemTarget.name}에게 {item.name}을(를) 사용했습니다.");
+        ((IConsumableItem)item).OnUsed(itemTarget);
+        playerState.inventory.Remove(item);
     }
 
     private void DoMonsterTurn(Monster turnOwner)

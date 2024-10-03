@@ -6,7 +6,7 @@ public class PlayerCharacter : Character
 {
     public string jobName { get; set; }
 
-    public int maxExp { get; private set; } = 10;
+    public int maxExp { get; protected set; } = 10;
     public int currentExp { get; set; } = 0;
    
 
