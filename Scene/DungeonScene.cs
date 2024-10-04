@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 public class DungeonScene : IScene
@@ -83,7 +84,7 @@ public class DungeonScene : IScene
             OnTurnEnd();
         }
 
-        foreach(PlayerCharacter playerCharacter in playerCharacters)
+        foreach (PlayerCharacter playerCharacter in playerCharacters)
         {
             if (playerCharacter.isDead)
             {
@@ -103,7 +104,7 @@ public class DungeonScene : IScene
         Console.WriteLine($"┌─────────────────────────────────── 내 정보 ─────────────────────────────────┐");
         foreach (PlayerCharacter playerCharacter in playerCharacters)
         {
-            if(playerCharacter.isDead)
+            if (playerCharacter.isDead)
             {
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
@@ -149,14 +150,15 @@ public class DungeonScene : IScene
     private List<Character> CreateTurnOrder()
     {
         List<Character> turnOrder = GetAllCharacters();
-        foreach (Character character in turnOrder)
+        for (int i = turnOrder.Count - 1; i >= 0; i--)
         {
-            if (character.isDead)
+            if (turnOrder[i].isDead)
             {
-                turnOrder.Remove(character);
+                turnOrder.RemoveAt(i);
             }
         }
-        turnOrder.Sort((x, y) => {
+        turnOrder.Sort((x, y) =>
+        {
             Random rnd = new Random();
             int xOrder = rnd.Next(x.stats.minAgility, x.stats.maxAgility + 1);
             int yOrder = rnd.Next(y.stats.minAgility, y.stats.maxAgility + 1);
@@ -167,7 +169,7 @@ public class DungeonScene : IScene
 
     private Character GetCurrentTurnOwner()
     {
-        if(turnOrder == null || turnOrder.Count <= turnOrderIndex)
+        if (turnOrder == null || turnOrder.Count <= turnOrderIndex)
         {
             return null;
         }
@@ -188,11 +190,11 @@ public class DungeonScene : IScene
     private void DoTurn(Character turnOwner)
     {
         Console.WriteLine($"[ {turnOwner.name}의 턴 ]");
-        if(turnOwner is PlayerCharacter)
+        if (turnOwner is PlayerCharacter)
         {
             DoPlayerTurn((PlayerCharacter)turnOwner, monsters);
         }
-        else if(turnOwner is Monster)
+        else if (turnOwner is Monster)
         {
             DoMonsterTurn((Monster)turnOwner);
         }
@@ -214,8 +216,7 @@ public class DungeonScene : IScene
             }
             else if (keyInfo.KeyChar == '2')
             {
-                List<Character> skillTargets = PlayerSkillTargeting(turnOwner);
-                SkillTurn(turnOwner, skillTargets);
+                UseSkill(turnOwner);
                 break;
             }
             else if (keyInfo.KeyChar == '3')
@@ -234,15 +235,15 @@ public class DungeonScene : IScene
             }
         }
     }
-   
+
     private Monster PlayerAttackTargeting(PlayerCharacter turnOwner)
     {
         Console.WriteLine("\n공격 대상 선택");
         int minCursorTop = Console.CursorTop;
         List<Monster> targets = new List<Monster>();
-        foreach(Monster monster in monsters)
+        foreach (Monster monster in monsters)
         {
-            if(monster.isDead)
+            if (monster.isDead)
             {
                 continue;
             }
@@ -253,24 +254,24 @@ public class DungeonScene : IScene
 
         int selectedTargetIndex = 0;
         Monster attackTarget = null;
-        while(true)
+        while (true)
         {
             Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
             Console.Write("*");
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-            if(keyInfo.Key == ConsoleKey.Spacebar)
+            if (keyInfo.Key == ConsoleKey.Spacebar)
             {
                 attackTarget = targets[selectedTargetIndex];
                 break;
             }
-            else if(keyInfo.Key == ConsoleKey.UpArrow && 0 < selectedTargetIndex)
+            else if (keyInfo.Key == ConsoleKey.UpArrow && 0 < selectedTargetIndex)
             {
                 Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
                 Console.Write("-");
                 selectedTargetIndex--;
             }
-            else if(keyInfo.Key == ConsoleKey.DownArrow && selectedTargetIndex < targets.Count-1)
+            else if (keyInfo.Key == ConsoleKey.DownArrow && selectedTargetIndex < targets.Count - 1)
             {
                 Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
                 Console.Write("-");
@@ -312,137 +313,93 @@ public class DungeonScene : IScene
         }
     }
 
-    private List<Character> PlayerSkillTargeting(PlayerCharacter turnOwner)
+    private void UseSkill(PlayerCharacter turnOwner)
     {
-        //Console.WriteLine("\n스킬을 사용할 대상을 선택하세요.");
-        //int minCursorTop = Console.CursorTop;
-        //int selectionResultTop = minCursorTop + monsters.Count + 2;  // 선택된 몬스터를 출력할 위치 설정
-        //List<Monster> targets = new List<Monster>();
-        //List<Monster> selectedTargets = new List<Monster>();
+        Skill selectedSkill = SelectSkill(turnOwner);
 
-        //// 살아있는 몬스터만 목록에 추가
-        //foreach (Monster monster in monsters)
-        //{
-        //    if (!monster.isDead)
-        //    {
-        //        targets.Add(monster);
-        //        Console.WriteLine($"- {monster.name}");
-        //    }
-        //}
+        if (selectedSkill == null)
+        {
+            Console.WriteLine($"사용할 스킬이 없어 턴을 넘깁니다.");
+            return;
+        }
 
-        //int selectedTargetIndex = 0;
-        //while (selectedTargets.Count < monsters.)
-        //{
-        //    Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
-        //    Console.Write("*");
+        List<Character> allCharacters = GetAllCharacters();
 
-        //    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-        //    if (keyInfo.Key == ConsoleKey.Spacebar)
-        //    {
-        //        Monster attackTarget = targets[selectedTargetIndex];
+        List<Character> skillTargets = selectedSkill.SelectTargetsFrom(allCharacters);
 
-        //        // 이미 선택한 대상이 아니면 추가
-        //        if (!selectedTargets.Contains(attackTarget))
-        //        {
-        //            selectedTargets.Add(attackTarget);
-        //            Console.SetCursorPosition(0, selectionResultTop + selectedTargets.Count - 1);  // 선택 결과 위치 설정
-        //            Console.WriteLine($"\n{attackTarget.name}을(를) 선택했습니다.");
-        //        }
+        if (skillTargets != null && skillTargets.Count > 0)
+        {
+            Console.WriteLine();
 
-        //        if (selectedTargets.Count >= targetCount)
-        //        {
-        //            break;  // 타겟 수만큼 선택했으면 종료
-        //        }
-        //    }
-        //    else if (keyInfo.Key == ConsoleKey.UpArrow && 0 < selectedTargetIndex)
-        //    {
-        //        Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
-        //        Console.Write("-");
-        //        selectedTargetIndex--;
-        //    }
-        //    else if (keyInfo.Key == ConsoleKey.DownArrow && selectedTargetIndex < targets.Count - 1)
-        //    {
-        //        Console.SetCursorPosition(0, minCursorTop + selectedTargetIndex);
-        //        Console.Write("-");
-        //        selectedTargetIndex++;
-        //    }
-        //}
-        //return selectedTargets;  // 여러 Monster 반환
-        return null;
+            selectedSkill.OnUse(skillTargets);
+        }
     }
-
-    public void SkillTurn(Character user, List<Character> skillTargets)
+    private Skill SelectSkill(PlayerCharacter turnOwner)
     {
-        //int selectedSkillIndex = 0;  // 선택된 스킬 인덱스
-        //List<Skill> skills = user.skills;  // 캐릭터의 스킬 목록
+        Console.WriteLine("\n사용할 스킬을 선택하세요:");
+        int minCursorTop = Console.CursorTop;
 
-        //if (skills.Count == 0)
-        //{
-        //    Console.WriteLine("사용 가능한 스킬이 없습니다.");
-        //    return false;
-        //}
+        List<Skill> skills = turnOwner.skills;
+        int selectedSkillIndex = 0;
+        Skill selectedSkill = null;
 
-        //Console.WriteLine("사용할 스킬을 선택하세요 (1번을 누르면 취소):");
-        //int topCursor = Console.CursorTop;
+        if (skills.Count == 0)
+        {
+            return null;
+        }
 
-        //// 스킬 목록을 처음 출력
-        //for (int i = 0; i < skills.Count; i++)
-        //{
-        //    if (i == selectedSkillIndex)
-        //    {
-        //        Console.WriteLine($"* {skills[i].skillName}");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine($"  {skills[i].skillName}");
-        //    }
-        //}
+        foreach (Skill skill in skills)
+        {
+            Console.WriteLine($"- {skill.skillName}: {skill.skillDescription}");
+        }
 
-        //while (true)
-        //{
-        //    Console.SetCursorPosition(0, topCursor + selectedSkillIndex);  // 커서를 현재 선택된 스킬로 이동
-        //    Console.Write("*");  // 현재 선택된 스킬을 *로 표시
+        while (true)
+        {
+            Console.SetCursorPosition(0, minCursorTop + selectedSkillIndex);
+            Console.Write("*");
 
-        //    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
-        //    // 이전 선택을 지워주기
-        //    Console.SetCursorPosition(0, topCursor + selectedSkillIndex);
-        //    Console.Write(" ");  // 이전 선택된 스킬의 * 표시를 지움
+            if (keyInfo.Key == ConsoleKey.Spacebar)
+            {
+                selectedSkill = skills[selectedSkillIndex];
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.UpArrow && selectedSkillIndex > 0)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedSkillIndex);
+                Console.Write("-");
+                selectedSkillIndex--;
+            }
+            else if (keyInfo.Key == ConsoleKey.DownArrow && selectedSkillIndex < skills.Count - 1)
+            {
+                Console.SetCursorPosition(0, minCursorTop + selectedSkillIndex);
+                Console.Write("-");
+                selectedSkillIndex++;
+            }
 
-        //    if (keyInfo.Key == ConsoleKey.UpArrow)
-        //    {
-        //        if (selectedSkillIndex > 0)
-        //        {
-        //            selectedSkillIndex--;
-        //        }
-        //    }
-        //    else if (keyInfo.Key == ConsoleKey.DownArrow)
-        //    {
-        //        if (selectedSkillIndex < skills.Count - 1)
-        //        {
-        //            selectedSkillIndex++;
-        //        }
-        //    }
-        //    else if (keyInfo.Key == ConsoleKey.Spacebar || keyInfo.Key == ConsoleKey.Enter)
-        //    {
-        //        Skill selectedSkill = skills[selectedSkillIndex];
 
-        //        // 타겟 수만큼 몬스터 선택
-        //        List<Monster> targets = selectedSkill.SelectTargetsFrom(monsters);
+            for (int i = 0; i < skills.Count; i++)
+            {
+                if (i == selectedSkillIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.SetCursorPosition(0, minCursorTop + i);
+                    Console.Write($"* {skills[i].skillName}: {skills[i].skillDescription}");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, minCursorTop + i);
+                    Console.Write($"- {skills[i].skillName}: {skills[i].skillDescription}");
+                }
+            }
+        }
 
-        //        if (targets.Count > 0)
-        //        {
-        //            selectedSkill.Use(targets);
-        //        }
-        //        return true;
-        //    }
-        //    else if (keyInfo.KeyChar == '1')
-        //    {
-        //        Console.SetCursorPosition(0, topCursor + skills.Count);
-        //        Console.WriteLine("스킬 선택을 취소했습니다.");
-        //        return false;
-        //    }
-        //}
+        Console.SetCursorPosition(0, minCursorTop + skills.Count);
+        Console.WriteLine();
+
+        return selectedSkill;
     }
 
     private IItem SelectItemToUse()
@@ -559,16 +516,16 @@ public class DungeonScene : IScene
     private void DoMonsterTurn(Monster turnOwner)
     {
         Console.Write($"{turnOwner.name}의 행동 선택 : ?");
-        Console.SetCursorPosition(Console.CursorLeft-1, Console.CursorTop);
+        Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
         Thread.Sleep(1000);
 
         List<Character> targetPool = new List<Character>();
         targetPool.AddRange(playerCharacters);
         targetPool.AddRange(monsters);
 
-        AiAction aiAction; 
+        AiAction aiAction;
         List<Character> selectedTargets;
-        while(true)
+        while (true)
         {
             aiAction = turnOwner.monsterAiComponent.NextAiAction();
             selectedTargets = aiAction.SelectTargetsFrom(targetPool);
@@ -587,7 +544,7 @@ public class DungeonScene : IScene
                 AttackTurn(turnOwner, target);
             }
         }
-        else if(aiAction is AiAction_HealOne || aiAction is AiAction_HealAll)
+        else if (aiAction is AiAction_HealOne || aiAction is AiAction_HealAll)
         {
             foreach (Character target in selectedTargets)
             {
@@ -600,7 +557,7 @@ public class DungeonScene : IScene
     {
         HealOrderInfo healOrderInfo = turnOwner.CreateHealOrder(healTarget);
         healTarget.health += healOrderInfo.healAmount;
-        if(healTarget.health > healTarget.stats.maxHealth)
+        if (healTarget.health > healTarget.stats.maxHealth)
         {
             healTarget.health = healTarget.stats.maxHealth;
         }
@@ -610,7 +567,7 @@ public class DungeonScene : IScene
 
     private bool IsAllPlayerCharacterDead()
     {
-        foreach(PlayerCharacter playerCharacter in playerCharacters)
+        foreach (PlayerCharacter playerCharacter in playerCharacters)
         {
             if (!playerCharacter.isDead)
             {
@@ -637,7 +594,7 @@ public class DungeonScene : IScene
         //#Todo : Play Win Sound
         Console.WriteLine("승리!");
         Thread.Sleep(1000);
-        
+
         int rewardExp = 0;
         int rewardGold = 0;
         List<IItem> rewardItems = new List<IItem>();
@@ -650,7 +607,7 @@ public class DungeonScene : IScene
 
         foreach (PlayerCharacter playerCharacter in playerCharacters)
         {
-            int actualRewardExp = new Random().Next((int)(rewardExp*0.8), rewardExp+1);
+            int actualRewardExp = new Random().Next((int)(rewardExp * 0.8), rewardExp + 1);
             playerCharacter.AddExp(rewardExp);
             Console.WriteLine($"{playerCharacter.name}은(는) {rewardExp}EXP 를 획득했습니다.");
             Thread.Sleep(500);
@@ -659,7 +616,7 @@ public class DungeonScene : IScene
         Console.WriteLine($"{rewardGold}G 를 획득했습니다.");
         Thread.Sleep(500);
 
-        foreach(IItem rewardItem in rewardItems)
+        foreach (IItem rewardItem in rewardItems)
         {
             Console.WriteLine($"{rewardItem.name}을(를) 획득했습니다.");
             GameManager.instance.playerState.inventory.Add(rewardItem);

@@ -18,5 +18,9 @@ internal class SkilledThief: Mercenary
         jobName = "시프";
         price = 100;
         description = "오랜 시간의 수련으로 숙련된 암살자다.";
+
+        AddSkill(new Skill_Thief_1(this));
+        AddSkill(new Skill_Thief_2(this));
+        AddSkill(new Skill_Thief_3(this));
     }
 }

@@ -18,5 +18,9 @@ internal class SkilledWarrior : Mercenary
         jobName = "워리어";
         price = 100;
         description = "오랜 시간의 수련으로 숙련된 전사다.";
+
+        AddSkill(new Skill_Warrior_1(this));
+        AddSkill(new Skill_Warrior_2(this));
+        AddSkill(new Skill_Warrior_3(this));
     }
 }

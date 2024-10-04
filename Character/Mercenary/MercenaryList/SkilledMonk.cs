@@ -18,5 +18,9 @@ internal class SkilledMonk: Mercenary
         jobName = "몽크";
         price = 100;
         description = "오랜 시간의 수련으로 숙련된 수도승이다.";
+
+        AddSkill(new Skill_Monk_1(this));
+        AddSkill(new Skill_Monk_2(this));
+        AddSkill(new Skill_Monk_3(this));
     }
 }

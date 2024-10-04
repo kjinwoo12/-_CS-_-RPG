@@ -10,5 +10,9 @@ public class Monk : PlayerCharacter
         : base(name, new CharacterStats(150, 3, 6, 7, 14, 4, 9, 0.15f, 0.12f))
     {
         jobName = "몽크";
+
+        AddSkill(new Skill_Monk_1(this));
+        AddSkill(new Skill_Monk_2(this));
+        AddSkill(new Skill_Monk_3(this));
     }
 }

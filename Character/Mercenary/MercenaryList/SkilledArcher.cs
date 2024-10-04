@@ -18,5 +18,9 @@ using System.Threading.Tasks;
         jobName = "아쳐";
         price = 100;
         description = "오랜 시간의 수련으로 숙련된 궁수이다.";
+
+        AddSkill(new Skill_Archer_1(this));
+        AddSkill(new Skill_Archer_2(this));
+        AddSkill(new Skill_Archer_3(this));
     }
 }
