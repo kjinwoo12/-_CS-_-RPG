@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1;
+using System;
 using System.Collections.Generic;
 
 public class DungeonSelectionScene : IScene
@@ -11,19 +12,49 @@ public class DungeonSelectionScene : IScene
 
     public void OnShow()
     {
-        Console.WriteLine("던전 입장");
-        Console.WriteLine("어떤 곳을 토벌할지 골라주세요.");
+        Console.WriteLine("                                          ___                               ");
+        Console.WriteLine("                                         | . \\ _ _ ._ _  ___  ___  ___ ._ _ ");
+        Console.WriteLine("                                         | | || | || ' |/ . |/ ._>/ . \\| ' |");
+        Console.WriteLine("                                         |___/`___||_|_|\\_. |\\___.\\___/|_|_|");
+        Console.WriteLine("                                                        <___'               ");
+        BoxMaker.Draw(35, 17, 41, 5);
+       
+        Console.SetCursorPosition(0, 5);
+        Console.WriteLine();
+        Console.WriteLine();
 
-        Console.WriteLine("1. 세얼간이 고블린의 숙소");
-        Console.WriteLine("2. 고블린 움막");
-        Console.WriteLine("3. 고블린 기지");
-        Console.WriteLine("4. 뱀파이어 남작의 산책길");
-        Console.WriteLine("5. 뱀파이어 대저택");
-        Console.WriteLine("6. 뱀파이어 성");
-        Console.WriteLine("7. 드래곤 둥지");
-        Console.WriteLine("8. 드래곤 숲");
-        Console.WriteLine("9. 드래곤 동굴");
-        Console.WriteLine("0. 나가기");
+        Console.WriteLine("                                         |  어떤 곳을 토벌할지 골라주세요");
+        Console.WriteLine("                                         |");
+        Console.WriteLine("                                         |    1. 세얼간이 고블린의 숙소");
+        Console.WriteLine("                                         |    2. 고블린 움막");
+        Console.WriteLine("                                         |    3. 고블린 기지");
+        Console.WriteLine("                                         |    4. 뱀파이어 남작의 산책길");
+        Console.WriteLine("                                         |    5. 뱀파이어 대저택");
+        Console.WriteLine("                                         |    6. 뱀파이어 성");
+        Console.WriteLine("                                         |    7. 드래곤 둥지");
+        Console.WriteLine("                                         |    8. 드래곤 숲");
+        Console.WriteLine("                                         |    9. 드래곤 동굴");
+        Console.WriteLine("                                         |    0. 나가기");
+        Console.SetCursorPosition(0, 22);
+        Console.WriteLine("⠀⠀⠀       ⠀⠀⠀⠀⠀⠀⠀⠀                  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡄⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀⠀⠀⠀⠀⠀                         ⠀⠀⠀⠀⠀⠀⠀⢀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⡢⡧⡰⡢⡀⡀⡠⡠⡠⣐⠢⡢⡢⣠⢤⣄⢄⣀⡀⡀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                  ⠀       ⠀⠀⠀⠀⠅⠀⡀⠀⡀⠀⠀⠀⡀⡄⡠⡠⠂⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠩⡷⣟⣿⡾⣾⡽⡯⣟⣗⢿⣝⡯⣯⡳⡽⣝⢗⡯⡻⠽⠓⠕⠂⠢⡀⠀⠀");
+        Console.WriteLine("⠀⠀⠀⠀⠀⠀⠀⠀                  ⠀⠀⠀⠀       ⠀⢀⠊⠀⠐⠘⢎⡔⡜⡎⣇⢣⢁⠣⡂⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢨⣿⣟⣿⣻⣽⣟⣯⢷⢵⡳⣕⣝⢮⢺⡹⣜⠓⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀⠀⠀⠀⠀                  ⠀⠀⠀       ⠀⠀⡠⡂⠀⠀⠀⠀⠀⠉⢯⡳⡵⣕⣕⣌⠲⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣗⣿⣺⣳⣻⣞⣿⣽⢯⡳⣕⡳⡜⣎⢧⠋⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀⠀                         ⠀⠀⠂⠀⠀⢌⠀⡎⠊⠠⠀⠄⡁⠄⠁⡀⠀⢣⢣⢣⠪⡪⡹⢜⢵⣢⠀⠀⠀⠀⠀⢀⢔⢵⣽⣞⣞⢞⢮⡺⣺⡺⣿⢽⣺⢜⢵⢕⠇⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀                         ⠀⠀⠀⡂⢀⢜⠠⡏⢌⢌⢆⢯⣨⡢⡣⡅⡢⡱⢡⢱⢱⢑⢕⠸⡸⡸⣪⢫⢦⡀⠀⣀⡲⣕⣷⣟⣞⢮⣫⢳⡹⣪⡫⡾⣻⣗⡯⣯⡓⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀                         ⠀⠀⠠⡃⢸⣂⢽⡪⣳⢽⢵⢏⡚⣍⢏⣙⢞⠮⡮⣚⢢⢣⢣⢹⣘⣸⢸⡸⣘⠬⢜⣴⣿⣻⢗⣗⡵⢧⢧⢳⠹⠪⠞⠝⡗⡽⣻⣳⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀                         ⠀⠀⠈⣇⣗⣎⡷⡽⡯⡪⣎⣧⣳⣕⢷⡱⣕⢕⢕⢝⢮⡺⢊⢪⡺⡼⢵⡧⣳⣽⡿⣽⡾⣯⡻⡘⠈⠀⠠⠀⠀⠀⠀⠀⠀⠀⠈⠙⢧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀                         ⠀⠀⠈⢔⡗⣯⡺⣺⢽⣺⢯⢟⠏⠛⢺⣳⣕⢧⢹⢜⢼⣹⣞⢜⡮⡯⣚⣽⣾⣿⣯⡿⣯⡿⣳⢫⢢⢇⡮⣂⢀⠠⠌⠀⠀⠀⠀⠀⠀⠀⠣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀                         ⠀⠀⠀⠜⢇⢇⣯⢏⢯⣶⡻⠐⠐⠀⠀⠀⠛⣮⢏⢮⣪⢾⡮⡧⣫⢾⣻⢿⡻⣾⣯⢿⣻⣯⣷⣻⣞⣮⡎⡎⣗⢽⢄⣀⢀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⡀⢄⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀                         ⠀⠀⠀⢪⢣⣻⣼⢞⣵⡽⠪⠤⠀⠀⠀⠀⠀⣻⣟⣯⢺⡵⣿⣼⣨⡚⡼⣴⣹⢼⢸⣝⣯⣿⣯⣿⢽⢱⢹⣪⢽⣽⣕⢗⡕⡅⠀⠀⠀⠀⠀⠀⠀⢀⠎⠈⠣⣓⠐⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀                         ⠀⠀⠈⡮⢇⢷⡯⡻⠁⠑⠀⠀⠀⠀⠀⠀⠀⠙⣽⣿⣿⡺⣟⣷⣿⣿⣻⣿⢽⢕⡯⠞⢻⣿⣷⡟⡜⡎⡇⣗⢿⣽⣾⣳⣝⢮⢆⢆⠀⡀⠀⠀⠀⠀⠁⠀⠀⡇⡇⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀                         ⠀⠀⠈⠁⢹⢽⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡿⣾⡻⠂⠀⠈⠉⠈⠉⢝⢼⠏⠀⠀⠙⣽⣿⣽⣾⣽⢽⣞⣗⡯⣚⢳⡯⣯⢝⣮⡲⡀⠀⡐⠀⠀⢀⠀⢜⣜⠆⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀                         ⠀⠀⠀⠀⠈⠈⠀⠀⠀⠀⠀⠀⠀⠀⣀⣔⠗⠋⠁⠀⠀⠀⠀⢀⠠⣜⢵⡓⠀⣀⣦⣴⡤⣨⣽⣷⡗⢠⡨⣈⢯⡳⣇⢈⠹⡻⣮⣺⢪⢏⢦⢄⡇⡦⡹⡪⡣⠁⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀⠀                         ⠀⠀⠀⠀⠀⠀⠀⠀⢀⢠⣰⣕⣯⣖⣯⢷⢤⣲⢴⡲⣲⣔⡧⣟⣼⢽⡳⡳⡫⢳⢱⢙⢔⢕⢝⢝⢷⡽⣞⣧⡥⣗⠄⠀⠀⠈⠚⠯⣫⢇⢧⢣⡫⠪⠃⠂⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀                         ⠀⠀⠀⠀⠀⠀⠀⠀⡠⡸⣊⠣⡳⢘⠸⡘⢌⢎⠎⡢⡱⡱⡱⣟⠞⢌⢣⢑⢐⢘⠌⡪⠪⡊⡂⢇⠅⢇⢃⠢⠫⠪⠪⣂⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+        Console.WriteLine("⠀⠀⠀⠀                         ⠀⠀⠀⠀⠀⠐⠁⠊⠂⠐⠐⠠⢁⠢⢊⠂⠢⠑⠨⠐⠡⠑⠨⠈⠂⠅⠂⡐⠠⠈⢂⠑⠐⡈⠂⠑⠐⠐⢈⠈⠨⠐⠀⠅⠁⢂⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+
 
         while (true)
         {
