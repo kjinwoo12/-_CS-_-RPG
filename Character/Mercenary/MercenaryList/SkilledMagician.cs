@@ -18,5 +18,9 @@ internal class SkilledMagician : Mercenary
         jobName = "매지션";
         price = 100;
         description = "오랜 시간의 수련으로 숙련된 마법사다.";
+
+        AddSkill(new Skill_Magician_1(this));
+        AddSkill(new Skill_Magician_2(this));
+        AddSkill(new Skill_Magician_3(this));
     }
 }

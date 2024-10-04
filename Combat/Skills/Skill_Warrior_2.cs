@@ -6,13 +6,13 @@ using System.Threading;
 public class Skill_Warrior_2 : Skill
 {
     public Skill_Warrior_2(Character owner)
-        : base(owner, "도깨비 참수(鬼斬り)", "두명의 적을 강력하게 공격합니다.")
+        : base(owner, "헤키레키 잇센(閃)", "두명의 적을 번개의 호흡을 사용해 공격한다.")
     {
     }
 
     public override bool IsValidFor(Character target)
     {
-        if (target.isDead || owner.GetType() == target.GetType())
+        if (target.isDead || (owner is PlayerCharacter && target is PlayerCharacter) || (owner is Monster && target is Monster))
         {
             return false;
         }
@@ -36,7 +36,7 @@ public class Skill_Warrior_2 : Skill
             Thread.Sleep(1000);
         }
         Console.WriteLine();
-        Console.WriteLine($"삼도류 연옥... {skillName}!");
+        Console.WriteLine($"카미나리노 코큐 이치노 카타... {skillName}!");
         Thread.Sleep(2000);
 
     }

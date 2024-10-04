@@ -12,7 +12,7 @@ public class Skill_Thief_3 : Skill
 
     public override bool IsValidFor(Character target)
     {
-        if (target.isDead || owner.GetType() == target.GetType())
+        if (target.isDead || (owner is PlayerCharacter && target is PlayerCharacter) || (owner is Monster && target is Monster))
         {
             return false;
         }
@@ -37,7 +37,7 @@ public class Skill_Thief_3 : Skill
         Console.WriteLine();
         Console.WriteLine($"다시는 안뽑기로 했는데... 울어라, {skillName}!");
         Thread.Sleep(2000);
-        int selfDamage = (int)(owner.stats.maxHealth * 0.1f);
+        int selfDamage = (int)(owner.stats.maxHealth * 0.3f);
         owner.health -= selfDamage;
         Console.WriteLine($"{owner.name}이(가) {selfDamage}의 데미지를 받았습니다.");
         Thread.Sleep(1000);

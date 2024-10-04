@@ -9,10 +9,10 @@ public class Skill_Archer_3 : Skill
         : base(owner, "용(龍)의 일격", "거대한 용을 소환합니다. 모든 적에게 데미지를 줍니다.")
     {
     }
-    
+
     public override bool IsValidFor(Character target)
     {
-        if (target.isDead || owner.GetType() == target.GetType())
+        if (target.isDead || (owner is PlayerCharacter && target is PlayerCharacter) || (owner is Monster && target is Monster))
         {
             return false;
         }

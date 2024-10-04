@@ -8,7 +8,7 @@ using System.Threading;
 public class Skill_Monk_2 : Skill
 {
     public Skill_Monk_2(Character owner)
-        : base(owner, "격체전공", "한 명을 치유합니다.")
+        : base(owner, "격체전공", "아군 한 명을 치유합니다.")
     {
     }
 
