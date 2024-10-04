@@ -317,8 +317,15 @@ public class DungeonScene : IScene
     {
         Skill selectedSkill = SelectSkill(turnOwner);
 
-        List<Character> skillTargets = selectedSkill.SelectTargetsFrom(monsters.Cast<Character>().ToList());
+        if (selectedSkill == null)
+        {
+            Console.WriteLine($"사용할 스킬이 없어 턴을 넘깁니다.");
+            return;
+        }
 
+        List<Character> allCharacters = GetAllCharacters();
+
+        List<Character> skillTargets = selectedSkill.SelectTargetsFrom(allCharacters);
 
         if (skillTargets != null && skillTargets.Count > 0)
         {
@@ -335,6 +342,11 @@ public class DungeonScene : IScene
         List<Skill> skills = turnOwner.skills;
         int selectedSkillIndex = 0;
         Skill selectedSkill = null;
+
+        if (skills.Count == 0)
+        {
+            return null;
+        }
 
         foreach (Skill skill in skills)
         {

@@ -30,14 +30,12 @@ public class Skill_Archer_3 : Skill
             attackOrder.damage = (int)(attackOrder.damage * 1.2f);
             DefenseOrderInfo defenseOrder = target.CreateDefenseOrder(attackOrder);
             target.health -= defenseOrder.actualDamage;
-            Console.WriteLine($"{target.name}에게 {skillName}을(를) 사용합니다.");
-            Thread.Sleep(1000);
             Console.WriteLine($"{target.name}이(가) {defenseOrder.actualDamage}의 데미지를 받았습니다.");
             Thread.Sleep(1000);
             //# Todo : 데미지 얼마나 줬는지 표시하기
         }
         Console.WriteLine();
-        Console.WriteLine($"류가 와가 테키오 쿠라우!   {skillName}!");
+        Console.WriteLine($"류가 와가 테키오 쿠라우!");
         Thread.Sleep(2000);
 
     }

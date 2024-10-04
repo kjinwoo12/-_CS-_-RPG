@@ -40,7 +40,7 @@ public class Skill_Monk_1 : Skill
             
         }
         Console.WriteLine();
-        Console.WriteLine($"기분이 좋구나...  {skillName}!");
+        Console.WriteLine($"기분이 좋구나...");
         Thread.Sleep(2000);
 
     }
