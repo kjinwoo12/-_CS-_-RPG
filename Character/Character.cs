@@ -24,6 +24,8 @@ public class Character
 
     public bool isDead => health <= 0;
 
+    public bool isAvoid => new Random().NextDouble() <= this.stats.avoidRate;
+
     public Character(string name, CharacterStats originalStats)
     {
         this.name = name;
@@ -50,7 +52,7 @@ public class Character
             attackOrderInfo.attackType = AttackType.CRITICAL;
             int minCriticalAttack = (int)Math.Ceiling(this.stats.minAttack * 1.6f);
             int maxCriticalAttack = (int)Math.Ceiling(this.stats.maxAttack * 1.6f);
-            float damageTemp = new Random().Next(minCriticalAttack, maxCriticalAttack + 1);
+            attackOrderInfo.damage = new Random().Next(minCriticalAttack, maxCriticalAttack + 1);
         }
         else
         {
