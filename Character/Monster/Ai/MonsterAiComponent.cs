@@ -16,7 +16,7 @@ public struct AiActionWeight
 public class MonsterAiComponent
 {
     private List<AiActionWeight> actionWeightList;
-    private int maxWeight = 0;
+    private int maxWeight;
 
     public MonsterAiComponent()
     {
@@ -25,6 +25,7 @@ public class MonsterAiComponent
 
     public void RemoveActions()
     {
+        maxWeight = 0;
         actionWeightList.Clear();
     }
 
