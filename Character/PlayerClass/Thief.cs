@@ -10,5 +10,9 @@ public class Thief : PlayerCharacter
         : base(name, new CharacterStats(100, 6, 18, 1, 2, 7, 15, 0.15f, 0.20f))
     {
         jobName = "시프";
+
+        AddSkill(new Skill_Thief_1(this));
+        AddSkill(new Skill_Thief_2(this));
+        AddSkill(new Skill_Thief_3(this));
     }
 }

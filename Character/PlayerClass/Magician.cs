@@ -10,5 +10,10 @@ public class Magician : PlayerCharacter
         : base(name, new CharacterStats(100, 8, 16, 3, 5, 3, 6, 0.15f, 0.1f))
     {
         jobName = "매지션";
+
+
+        AddSkill(new Skill_Magician_1(this));
+        AddSkill(new Skill_Magician_2(this));
+        AddSkill(new Skill_Magician_3(this));
     }
 }

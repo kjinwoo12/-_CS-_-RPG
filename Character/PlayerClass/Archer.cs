@@ -10,5 +10,9 @@ public class Archer : PlayerCharacter
         : base(name, new CharacterStats(130, 7, 14, 3, 5, 6, 13, 0.15f, 0.15f))
     {
         jobName = "아쳐";
+
+        AddSkill(new Skill_Archer_1(this));
+        AddSkill(new Skill_Archer_2(this));
+        AddSkill(new Skill_Archer_3(this));
     }
 }
