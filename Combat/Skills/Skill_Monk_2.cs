@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 
 public class Skill_Monk_2 : Skill
 {
     public Skill_Monk_2(Character owner)
-        : base(owner, "강해져서 돌아와라", "한 명의 적을 치유합니다.")
+        : base(owner, "격체전공", "아군 한 명을 치유합니다.")
     {
-        // 우리편을 대상으로 하는게 나름 만져보고 있는데 잘 안되고 있네요....ㅜㅜ
     }
 
     public override bool IsValidFor(Character target)
     {
-        if (target.isDead || target.GetType() == owner.GetType() || target.health == target.stats.maxHealth)
-        {
-            return false;
-        }
-        return true;
+        return target is PlayerCharacter && !target.isDead && target.health < target.stats.maxHealth;
     }
 
     public override void OnUse(List<Character> targets)
@@ -27,23 +23,24 @@ public class Skill_Monk_2 : Skill
         {
             int healAmount = (int)(owner.stats.maxHealth * 0.2f); // 최대 체력의 20% 회복
             target.health = Math.Min(target.stats.maxHealth, target.health + healAmount);
-            Console.WriteLine($"{target.name}에게 {healAmount}만큼 치유했습니다.");
+            Console.WriteLine($"{target.name}을/를 {healAmount}만큼 치유했습니다.");
             Thread.Sleep(1000);
             Console.WriteLine();
-            Console.WriteLine($"아직 나약하군...  {skillName}!");
+            Console.WriteLine($"영웅은 죽지 않아요...");
             Thread.Sleep(2000);
         }
     }
 
     public override List<Character> SelectTargetsFrom(List<Character> targets)
     {
-        List<Character> validTargets = ParseValidTargetCandidatesFrom(targets);
+        List<Character> validTargets = targets.Where(target => target is PlayerCharacter && !target.isDead && target.health < target.stats.maxHealth).ToList();
 
         if (validTargets.Count == 0)
         {
-            Console.WriteLine("선택할 수 있는 타겟이 없습니다.");
+            Console.WriteLine("치유할 수 있는 아군이 없습니다.");
             return null;
         }
+
         int selectedTargetIndex = 0;
         int minCursorTop = Console.CursorTop;
 

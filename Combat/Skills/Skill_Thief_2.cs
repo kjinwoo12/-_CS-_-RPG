@@ -12,7 +12,7 @@ public class Skill_Thief_2 : Skill
 
     public override bool IsValidFor(Character target)
     {
-        if (target.isDead || owner.GetType() == target.GetType())
+        if (target.isDead || (owner is PlayerCharacter && target is PlayerCharacter) || (owner is Monster && target is Monster))
         {
             return false;
         }
@@ -36,7 +36,7 @@ public class Skill_Thief_2 : Skill
             Thread.Sleep(1000);
         }
         Console.WriteLine();
-        Console.WriteLine($"죄송합니다 스승님... {skillName}!");
+        Console.WriteLine($"독은 비겁하지 않아... {skillName}!");
         Thread.Sleep(2000);
 
     }
