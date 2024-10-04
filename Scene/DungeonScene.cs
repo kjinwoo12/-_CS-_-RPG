@@ -150,11 +150,11 @@ public class DungeonScene : IScene
     private List<Character> CreateTurnOrder()
     {
         List<Character> turnOrder = GetAllCharacters();
-        foreach (Character character in turnOrder)
+        for (int i = turnOrder.Count - 1; i >= 0; i--)
         {
-            if (character.isDead)
+            if (turnOrder[i].isDead)
             {
-                turnOrder.Remove(character);
+                turnOrder.RemoveAt(i);
             }
         }
         turnOrder.Sort((x, y) =>
